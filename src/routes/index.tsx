@@ -5,10 +5,11 @@ import { ProtectedLoginRouter } from "../app/components/ProtectedLoginRouter";
 import { Login } from "../app/Auth";
 import { UserAuthProvider } from "../context/UserAuthContext";
 import { ProtectedRouter } from "../app/components/ProtectedRouter";
-import { StudentInfo } from "../app/Student";
-import Navbar from "../app/components/Navbar";
-import SideBar from "../app/components/SideBar";
+import { StudentInfo } from "../app/Student/Home";
+import Navbar from "../app/components/navbar/Navbar";
+import SideBar from "../app/components/sidebar/SideBar";
 import { UserContext, UserProvider } from "../context/UserContext";
+import { Announce } from "../app/Student/Announcement";
 
 export const AppRoutes: React.FC = () => {
   return (
@@ -32,6 +33,20 @@ export const AppRoutes: React.FC = () => {
               <div className="flex">
               <SideBar />
               <StudentInfo />
+              </div>
+            </UserProvider>
+          </ProtectedRouter>
+        }
+      />
+            <Route
+        path={ROUTES.STUDENT.ANOUNCE_PAGE}
+        element={
+          <ProtectedRouter>
+            <UserProvider>
+              <Navbar />
+              <div className="flex">
+              <SideBar />
+              <Announce />
               </div>
             </UserProvider>
           </ProtectedRouter>

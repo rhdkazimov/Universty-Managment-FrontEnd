@@ -1,11 +1,10 @@
 import React from "react";
 import { Table, Tbody, Tr, Td, TableContainer } from "@chakra-ui/react";
-import { ILoginnedStudent } from "../../models";
+import { ILoginnedStudent } from "../../../models";
 import { FadeLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../routes/consts";
+import { ROUTES } from "../../../routes/consts";
 import "./index.scss";
-
 
 export const StudentInfo: React.FC = () => {
   const [studentInfo, setStudentInfo] = React.useState<ILoginnedStudent>();
@@ -25,6 +24,13 @@ export const StudentInfo: React.FC = () => {
       <Table variant="simple">
         <Tbody>
           <Tr>
+            <td className="studentImgBox"  rowSpan={20} >
+                <img
+                className="studentImgPhoto"
+                  src={studentInfo.img}
+                  alt="Tələbə"
+                />
+            </td>
             <Td>Tələbə Nömrəniz :</Td>
             <Td>
               <b>{studentInfo.studentID}</b>

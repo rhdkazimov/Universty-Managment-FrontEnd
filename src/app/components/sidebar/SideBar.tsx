@@ -1,13 +1,13 @@
 import React from "react";
 import "./sidebar.scss";
-import { ILoginnedStudent } from "../../models";
+import { ILoginnedStudent } from "../../../models";
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../routes/consts";
+import { ROUTES } from "../../../routes/consts";
 import CampaignIcon from '@mui/icons-material/Campaign';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
-import { useUserContext } from "../../hooks";
+import { useUserContext } from "../../../hooks";
 
 const SideBar = () => {
   const [loginnedUserInfo, setLoginnedUserInfo] =
@@ -28,21 +28,21 @@ const SideBar = () => {
       </div>
       <div className="menuInfo">
         <ul>
-            <li>
+            <li onClick={()=>navigate(ROUTES.STUDENT.MAIN_PAGE)}>
                 <HomeIcon className="icon" />
-                <p className={sideBarIsOpen?"":"d-none"} onClick={()=>navigate(ROUTES.STUDENT.MAIN_PAGE)}>Ana Səhifə</p>
+                <p className={sideBarIsOpen?"":"d-none"}>Ana Səhifə</p>
             </li>
-            <li>
+            <li onClick={()=>navigate(ROUTES.STUDENT.ANOUNCE_PAGE)}>
                 <CampaignIcon className="icon" />
-                <p className={sideBarIsOpen?"":"d-none"} onClick={()=>navigate(ROUTES.STUDENT.ANOUNCE_PAGE)}>Elanlar</p>
+                <p className={sideBarIsOpen?"":"d-none"} >Elanlar</p>
             </li>
-            <li>
+            <li onClick={()=>navigate(ROUTES.STUDENT.PROGRAMS_PAGE)}>
                 <LibraryBooksIcon className="icon" />
-                <p className={sideBarIsOpen?"":"d-none"} onClick={()=>navigate(ROUTES.STUDENT.PROGRAMS_PAGE)}>Kafedra və Programlar</p>
+                <p className={sideBarIsOpen?"":"d-none"} >Kafedra və Programlar</p>
             </li>
-            <li>
+            <li onClick={()=>navigate(ROUTES.STUDENT.CONTACT_PAGE)}>
                 <ContactSupportIcon className="icon" />
-                <p className={sideBarIsOpen?"":"d-none"} onClick={()=>navigate(ROUTES.STUDENT.CONTACT_PAGE)}>Əlaqə</p>
+                <p className={sideBarIsOpen?"":"d-none"} >Əlaqə</p>
             </li>
         </ul>
       </div>

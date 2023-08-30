@@ -21,3 +21,9 @@ export interface ILoginnedStudent {
     stateOrdered:boolean,
     img:string,
 }
+
+export interface IAnnounceInfo{
+    headerInfo:string,
+    mainInfo:string,
+    date:string
+}

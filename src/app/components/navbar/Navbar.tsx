@@ -3,12 +3,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import "./navbar.scss";
-import { ILoginnedStudent } from "../../models";
+import { ILoginnedStudent } from "../../../models";
 import { Button } from "@chakra-ui/react";
 import LoginIcon from '@mui/icons-material/Login';
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../routes/consts";
-import { useUserContext } from "../../hooks";
+import { ROUTES } from "../../../routes/consts";
+import { useUserContext } from "../../../hooks";
 
 const Navbar = () => {
   const [userInfo, setUserInfo] = React.useState<ILoginnedStudent>();

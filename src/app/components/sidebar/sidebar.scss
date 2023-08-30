@@ -27,15 +27,18 @@
     ul {
       list-style: none;
       li {
-          display: flex;
-          list-style: none;
-          padding-left: 15px;
-          margin-bottom: 10px;
-          .icon {
-              color: white;
-            }
-            p {
-            margin-left: 5px;
+        cursor: pointer;
+        display: flex;
+        list-style: none;
+        padding: 10px 0 10px 15px;
+        &:hover{
+          background-color: #242424;
+        }
+        .icon {
+          color: white;
+        }
+        p {
+          margin-left: 5px;
           color: #b8c7ce;
         }
       }
@@ -43,7 +46,6 @@
   }
 }
 
-
-.w-1{
+.w-1 {
   width: 4% !important;
 }
