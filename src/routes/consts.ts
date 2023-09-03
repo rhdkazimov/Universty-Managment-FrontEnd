@@ -5,5 +5,6 @@ export const ROUTES = {
         ANOUNCE_PAGE:"/anounce",
         CONTACT_PAGE:"/contact",
         PROGRAMS_PAGE:"/programs",
+        FACULTY_PROGRAMS_PAGE:"/faculty-programs",
     }
 }

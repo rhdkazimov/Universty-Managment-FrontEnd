@@ -27,3 +27,19 @@ export interface IAnnounceInfo{
     mainInfo:string,
     date:string
 }
+
+export interface IPrograms{
+    sectionCode:string,
+    sectionName:string,
+    sectionLessons:string[],
+    sectionsProgramsForYear:ISectionProgramsFor[]
+}
+
+export interface ISectionProgramsFor {
+    year:number,
+    code:number,
+    lang:string,
+    programName:string,
+    faculty:string
+}
+

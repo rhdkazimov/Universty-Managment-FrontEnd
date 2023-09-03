@@ -6,10 +6,17 @@ export class UserService extends HttpClient{
         super("http://localhost:3001");
     }
 
-
    
     async getAllAnnounce (){
         return await this.get(`AllAnnounces`)
+    }
+
+    async getAllPrograms (){
+        return await this.get(`AllPrograms`)
+    }
+
+    async getProgramByCode (code:string){
+        return await this.get(`Program/${code}`)
     }
 
     async logout() {

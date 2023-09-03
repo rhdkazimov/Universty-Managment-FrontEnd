@@ -36,6 +36,70 @@ const DAnnouncesData = [
     },
 ]
 
+const DProgramsData = [
+    {
+        sectionCode:"DEPS_ACC",
+        sectionName:"Maliyyə və mühasibat",
+        sectionLessons: ["ACC","MHS"],
+        sectionsProgramsForYear: [{
+            year:2023,
+            code:10218,
+            lang:"AZ",
+            programName:"Mühasibat",
+            faculty:"İqtisadiyyat və İdarəetmə"
+        },{
+            year:2022,
+            code:102189,
+            lang:"EN",
+            programName:"Mühasibat 2",
+            faculty:"İqtisadiyyat və İdarəetmə"
+        },{
+            year:2029,
+            code:10218,
+            lang:"AZ",
+            programName:"Mühasibat Sirleri",
+            faculty:"İqtisadiyyat və İdarəetmə"
+        },
+]
+    },
+    {
+        sectionCode:"DEPS_ABC",
+        sectionName:"Mühəndislik",
+        sectionLessons: ["ACDC","MNC"],
+        sectionsProgramsForYear: [{
+            year:2024,
+            code:10208,
+            lang:"AZ",
+            programName:"Coding",
+            faculty:"İqtisadiyyat və İdarəetmə"
+        },{
+            year:2023,
+            code:10208,
+            lang:"AZ",
+            programName:"Coding",
+            faculty:"İqtisadiyyat və İdarəetmə"
+        },{
+            year:2021,
+            code:10208,
+            lang:"AZ",
+            programName:"Coding",
+            faculty:"İqtisadiyyat və İdarəetmə"
+        },]
+    },
+    {
+        sectionCode:"DEPS_MNC",
+        sectionName:"Maliyyə və mühasibat",
+        sectionLessons: ["ACC","MHS"],
+        sectionsProgramsForYear: [{
+            year:2023,
+            code:10218,
+            lang:"AZ",
+            programName:"Mühasibat",
+            faculty:"İqtisadiyyat və İdarəetmə"
+        }]
+    },
+]
+
 module.exports = {
-    DUserData,DAnnouncesData
+    DUserData,DAnnouncesData,DProgramsData
 };

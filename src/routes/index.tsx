@@ -10,6 +10,8 @@ import Navbar from "../app/components/navbar/Navbar";
 import SideBar from "../app/components/sidebar/SideBar";
 import { UserContext, UserProvider } from "../context/UserContext";
 import { Announce } from "../app/Student/Announcement";
+import ProgramsList from "../app/User/Programs";
+import FacultyProgram from "../app/User/Programs/FacultyProgram";
 
 export const AppRoutes: React.FC = () => {
   return (
@@ -47,6 +49,34 @@ export const AppRoutes: React.FC = () => {
               <div className="flex">
               <SideBar />
               <Announce />
+              </div>
+            </UserProvider>
+          </ProtectedRouter>
+        }
+      />
+        <Route
+        path={ROUTES.STUDENT.PROGRAMS_PAGE}
+        element={
+          <ProtectedRouter>
+            <UserProvider>
+              <Navbar />
+              <div className="flex">
+              <SideBar />
+              <ProgramsList />
+              </div>
+            </UserProvider>
+          </ProtectedRouter>
+        }
+      />
+      <Route
+        path={ROUTES.STUDENT.FACULTY_PROGRAMS_PAGE}
+        element={
+          <ProtectedRouter>
+            <UserProvider>
+              <Navbar />
+              <div className="flex">
+              <SideBar />
+              <FacultyProgram />
               </div>
             </UserProvider>
           </ProtectedRouter>
