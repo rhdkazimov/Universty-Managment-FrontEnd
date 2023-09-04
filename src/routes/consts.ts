@@ -6,5 +6,6 @@ export const ROUTES = {
         CONTACT_PAGE:"/contact",
         PROGRAMS_PAGE:"/programs",
         FACULTY_PROGRAMS_PAGE:"/faculty-programs",
+        GRADES:"/grades",
     }
 }

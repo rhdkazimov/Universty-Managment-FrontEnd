@@ -1,0 +1,22 @@
+.facultyListContainer {
+  padding: 15px;
+width: 100%;
+  .sectionCode {
+    color: #337ab7;
+    &:hover {
+      color: #1d3a53;
+      cursor: pointer;
+    }
+  }
+
+  .facultyListHeader {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 1%;
+  }
+
+  .facultyListInfo {
+    padding: 6px;
+    font-size: 15px;
+  }
+}

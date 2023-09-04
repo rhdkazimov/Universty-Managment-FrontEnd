@@ -1,5 +1,5 @@
  const DUserData = {
-    studentID:"202010023",
+    studentID:"1111",
     password:"code123",
     firstName:"Ad",
     surName:"Soyad",
@@ -35,6 +35,22 @@ const DAnnouncesData = [
         date:"11.030.45"
     },
 ]
+
+const DUserGrades = [{
+    years:"2020-2021",
+semester:1,
+grades:[
+    {lessonCode:"EKM 103",
+lessonName:"Ümumi Ekologiya",
+SDF1:52,
+SDF2:85,
+SDF3:92,
+TSI:76,
+SSI:82,
+ORT:96
+}
+]
+}]
 
 const DProgramsData = [
     {
@@ -101,5 +117,5 @@ const DProgramsData = [
 ]
 
 module.exports = {
-    DUserData,DAnnouncesData,DProgramsData
+    DUserData,DAnnouncesData,DProgramsData,DUserGrades
 };

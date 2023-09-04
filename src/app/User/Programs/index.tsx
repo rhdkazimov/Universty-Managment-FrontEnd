@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../routes/consts";
-import { Link } from "react-router-dom";
+import "./index.scss";
 
 export default function ProgramsList() {
   const { userService } = useService();
@@ -28,11 +28,14 @@ export default function ProgramsList() {
     }
   );
 
-
+  const handleNavigatePrograms = (e:string) => navigate(ROUTES.STUDENT.FACULTY_PROGRAMS_PAGE,{state:e})
+  let ordinalNum = 0;
 
 
   return (
-    <TableContainer>
+    <TableContainer className="facultyListContainer">
+      <h1 className="facultyListHeader">Bölmələr (kafedraların) siyahısı</h1>
+      <span className="facultyListInfo">Burada sistemdə tutulan kafedraları, kafedralara məxsus dərs kodu prefikslərini və kafedraların illərə görə proqramını görə bilərsiz.</span>
       <Table>
         <Thead>
           <Tr>
@@ -45,10 +48,11 @@ export default function ProgramsList() {
         <Tbody>
           {userProgramsData?.data.length ? (
             userProgramsData.data.map((program: IPrograms) => {
+              ordinalNum++;
               return (
                 <Tr sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                  <Td>{1}</Td>
-                  <Td onClick={(e)=>navigate(ROUTES.STUDENT.FACULTY_PROGRAMS_PAGE,{state:program.sectionCode})}>{program.sectionCode}
+                  <Td>{ordinalNum}</Td>
+                  <Td className="sectionCode" onClick={()=>handleNavigatePrograms(program.sectionCode)}>{program.sectionCode}
                   
                   </Td>
                   <Td>{program.sectionName}</Td>
