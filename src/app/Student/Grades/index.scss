@@ -1,0 +1,28 @@
+.gradeBox {
+  width: 100%;
+  padding: 15px;
+  margin-top: 30px;
+  .gradeBoxHeader {
+    font-weight: 500;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  .gradeDataBox {
+    padding: 5px;
+    overflow-x: auto;
+    .gradeDataDate {
+      font-weight: 600;
+    }
+    .gradeDataTable {
+      border: 1px solid rgb(221, 221, 221);
+      border-top: 3px solid rgb(221, 221, 221);
+      th {
+        color: black;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+    }
+  }
+}

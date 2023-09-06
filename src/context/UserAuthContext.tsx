@@ -23,7 +23,8 @@ export const UserAuthProvider: React.FC<any> = ({ children }) => {
 
   const { mutateAsync: mutateLoginUserApplication, isLoading: isLoginLoading } =
     useMutation((requestBody: ILoginUser) => {
-     return userAuthService.loginUser(requestBody).then()
+     return userAuthService.loginUser(requestBody).then().catch((err)=>console.log(err)
+     )
     }
     );
 

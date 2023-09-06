@@ -31,6 +31,8 @@ const Navbar = () => {
     navigate(ROUTES.STUDENT.LOGIN)
   }
 
+  const handleAnnounceNav = ()=> navigate(ROUTES.STUDENT.ANOUNCE_PAGE)
+
   return (
     <div className="container">
       <div className="navbar">
@@ -43,7 +45,7 @@ const Navbar = () => {
           <MenuIcon onClick={()=>setSideBarIsOpen(!sideBarIsOpen)} className="menuicon" />
         </div>
         <div className="user" >
-          <MailOutlineIcon className="mail" />
+          <MailOutlineIcon onClick={handleAnnounceNav}  className="mail" />
           <div className="image" onClick={handleUserSettings}>
             <img src={userInfo?.img} alt="profile" />
             <p>{userInfo?.firstName + " " + userInfo?.surName}</p>

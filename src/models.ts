@@ -43,3 +43,20 @@ export interface ISectionProgramsFor {
     faculty:string
 }
 
+
+export interface IStudentGrades {
+    years:string,
+    semester:number,
+    grades:IStudentGradesInfo[]
+}
+
+export interface IStudentGradesInfo{
+    lessonCode:string,
+    lessonName:string,
+    SDF1:number,
+    SDF2:number,
+    SDF3:number,
+    TSI:number,
+    SSI:number,
+    ORT:number
+}
