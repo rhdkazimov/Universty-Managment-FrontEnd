@@ -7,5 +7,6 @@ export const ROUTES = {
         PROGRAMS_PAGE:"/programs",
         FACULTY_PROGRAMS_PAGE:"/faculty-programs",
         GRADES:"/grades",
+        ATTANCE:"/attance"
     }
 }

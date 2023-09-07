@@ -8,6 +8,7 @@ import CampaignIcon from '@mui/icons-material/Campaign';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import GradingIcon from '@mui/icons-material/Grading';
+import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import { useUserContext } from "../../../hooks";
 
 const SideBar = () => {
@@ -44,6 +45,10 @@ const SideBar = () => {
             <li onClick={()=>navigate(ROUTES.STUDENT.GRADES)}>
                 <GradingIcon className="icon" />
                 <p className={sideBarIsOpen?"":"d-none"} >Qiymət Cədvəli</p>
+            </li>
+            <li onClick={()=>navigate(ROUTES.STUDENT.ATTANCE)}>
+                <EditCalendarIcon className="icon" />
+                <p className={sideBarIsOpen?"":"d-none"} >Elektron Jurnal</p>
             </li>
             <li onClick={()=>navigate(ROUTES.STUDENT.CONTACT_PAGE)}>
                 <ContactSupportIcon className="icon" />

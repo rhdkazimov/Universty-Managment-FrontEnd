@@ -13,6 +13,7 @@ import { Announce } from "../app/Student/Announcement";
 import ProgramsList from "../app/User/Programs";
 import FacultyProgram from "../app/User/Programs/FacultyProgram";
 import Grades from "../app/Student/Grades";
+import Attance from "../app/Student/Attance";
 
 export const AppRoutes: React.FC = () => {
   return (
@@ -92,6 +93,20 @@ export const AppRoutes: React.FC = () => {
               <div className="flex">
                 <SideBar />
                 <Grades />
+              </div>
+            </UserProvider>
+          </ProtectedRouter>
+        }
+      />
+      <Route
+        path={ROUTES.STUDENT.ATTANCE}
+        element={
+          <ProtectedRouter>
+            <UserProvider>
+              <Navbar />
+              <div className="flex">
+                <SideBar />
+                <Attance />
               </div>
             </UserProvider>
           </ProtectedRouter>

@@ -9,5 +9,9 @@ export class StudentService extends HttpClient{
     async getStudentGrades (id:string){
         return await this.get(`grades/${id}`)
     }
+
+    async getStudentAttance (id:string,semester:string){
+        return await this.get(`attance/${id}/${semester}`)
+    }
    
 } 

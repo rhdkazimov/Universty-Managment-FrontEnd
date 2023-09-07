@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { DUserData, DAnnouncesData, DProgramsData, DUserGrades } = require("./data/users");
+const { DUserData, DAnnouncesData, DProgramsData, DUserGrades, DStudentAttance } = require("./data/users");
 const PORT = process.env.PORT | 3001;
 
 const app = express();
@@ -38,6 +38,11 @@ app.get("/Program/:id", (req, res) => {
 
 app.get("/grades/:id", (req, res) => {
   res.json(DUserGrades);
+});
+
+app.get("/attance/:id/:semester", (req, res) => {
+  console.log(req.params.semester);
+  res.json(DStudentAttance);
 });
 
 app.listen(PORT, () => {

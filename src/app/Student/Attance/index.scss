@@ -1,0 +1,50 @@
+.studentAttanceDataBox {
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  .boxHeader {
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .selectContainer {
+    display: flex;
+    align-items: center;
+    width: 20%;
+    .selectInfo {
+      font-weight: 600;
+    }
+    .selectBox {
+      width: 92%;
+      margin: 0 10px;
+      height: 35px;
+    }
+    button {
+      margin-left: 10px;
+      height: 35px;
+    }
+  }
+  .tableBox {
+    margin-top: 20px;
+    border: 1px solid rgb(221, 221, 221);
+    border-top: 3px solid rgb(221, 221, 221);
+    th {
+      color: black;
+    }
+    th,
+    td {
+      border: 1px solid #ddd !important;
+    }
+    .progressBox {
+      border: 1px solid #ddd;
+      margin-top: 5px;
+      height: 10px;
+      .progressBar {
+        background-color: tan;
+        height: 100%;
+        display: flex;
+        justify-content: left;
+      }
+    }
+  }
+}
