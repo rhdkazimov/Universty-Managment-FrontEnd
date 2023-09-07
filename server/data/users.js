@@ -203,46 +203,51 @@ const DProgramsData = [
   },
 ];
 
-const DStudentAttance = 
+const DStudentAttance = {
+  year: "2020-2021",
+  semester: 1,
+  lessons: [
     {
-       year:"2020-2021",
-       semester:1,
-       lessons:[
-        {
-            code:"EKM 103",
-            name:"Ümumi Ekologiya",
-            teacher:"Etibar Qehremanov",
-            time:26,
-            plus:16,
-            absance:2,
-            percentage:4
-        },
-        {
-            code:"EKM 104",
-            name:"Ekologiya",
-            teacher:"Etibar Qehremanov",
-            time:22,
-            plus:6,
-            absance:0,
-            percentage:8
-        },
-        {
-            code:"EKM 105",
-            name:"Ümumi 2",
-            teacher:"Etibar Qehremanov",
-            time:16,
-            plus:4,
-            absance:2,
-            percentage:16
-        },
-       ]
-    }
+      code: "EKM 103",
+      name: "Ümumi Ekologiya",
+      teacher: "Etibar Qehremanov",
+      time: 26,
+      plus: 16,
+      absance: 2,
+      percentage: 4,
+    },
+    {
+      code: "EKM 104",
+      name: "Ekologiya",
+      teacher: "Etibar Qehremanov",
+      time: 22,
+      plus: 6,
+      absance: 0,
+      percentage: 8,
+    },
+    {
+      code: "EKM 105",
+      name: "Ümumi 2",
+      teacher: "Etibar Qehremanov",
+      time: 16,
+      plus: 4,
+      absance: 2,
+      percentage: 16,
+    },
+  ],
+};
 
+const DUniverstySettingData = {
+  number: "+994508859083",
+  faks: "+994508859083",
+  mail: "mirrahidsk@code.edu.az",
+};
 
 module.exports = {
   DUserData,
   DAnnouncesData,
   DProgramsData,
   DUserGrades,
-  DStudentAttance
+  DStudentAttance,
+  DUniverstySettingData,
 };

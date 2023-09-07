@@ -60,3 +60,8 @@ export interface IStudentGradesInfo{
     SSI:number,
     ORT:number
 }
+
+export interface IContactForm {
+    header:string,
+    text:string
+}

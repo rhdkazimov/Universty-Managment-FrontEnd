@@ -3,5 +3,6 @@ export enum EQueryKeys {
     getAllPrograms = "getAllPrograms",
     getProgramByCode = "getProgramByCode",
     getStudentGrade = "getStudentGrade",
-    getStudentAttance = "getStudentAttance"
+    getStudentAttance = "getStudentAttance",
+    getUniverstySettingData="getUniverstySettingData"
 }

@@ -15,7 +15,7 @@ import {
 import { FadeLoader } from "react-spinners";
 import "./index.scss";
 
-const Attance = () => {
+const Attance: React.FC = () => {
   const { studentService } = useService();
   const [semester, setSemester] = React.useState("1");
   const {

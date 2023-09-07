@@ -5,6 +5,7 @@ import { EQueryKeys } from "../../../enums";
 import { IStudentGrades, IStudentGradesInfo } from "../../../models";
 import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import "./index.scss";
+import { FadeLoader } from "react-spinners";
 
 const Grades: React.FC = () => {
   const { studentService } = useService();
@@ -19,6 +20,13 @@ const Grades: React.FC = () => {
           .catch((err) => console.log(err));
       }
     }
+  );
+
+  if (isLoading)
+  return (
+    <div className="loaderBox">
+      <FadeLoader color="#36d7b7" />
+    </div>
   );
 
   return (
@@ -71,7 +79,9 @@ const Grades: React.FC = () => {
             );
           })
         ) : (
-          <span>LOADINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG</span>
+          <div className="loaderBox">
+          <FadeLoader color="#36d7b7" />
+        </div>
         )
       }
     </div>

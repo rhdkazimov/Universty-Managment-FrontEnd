@@ -1,0 +1,42 @@
+.contactBoxBG {
+  padding: 15px;
+  width: 100%;
+  background-color: #ecf0f5;
+  .contactBox {
+    background-color: #fff;
+    margin-top: 15px;
+    .contactHeader {
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+    .contactSupportForm {
+      margin-left: 20px;
+      margin-bottom: 15px;
+      tr {
+        height: 35px;
+        input,
+        .textInput {
+          border: 1px solid rgb(200, 200, 200);
+          border-radius: 2px;
+          width: 350px;
+        }
+        .textAreaHeader {
+          display: flex;
+          align-items: start;
+        }
+        .btnBox {
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+    .contactInformationBox {
+      display: flex;
+      flex-direction: column;
+      span {
+        margin: 4px 6px;
+      }
+    }
+  }
+}
