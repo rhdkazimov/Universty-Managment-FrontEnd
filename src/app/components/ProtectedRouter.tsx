@@ -10,5 +10,5 @@ export const ProtectedRouter :  React.FC<IProps> = ({children}) => {
   if(localStorage.getItem("token")){
    return children 
   }
-  return <Navigate to={ROUTES.STUDENT.LOGIN}/>
+  return <Navigate to={ROUTES.USER.LOGIN}/>
 }

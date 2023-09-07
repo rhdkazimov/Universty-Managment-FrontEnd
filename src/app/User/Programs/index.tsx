@@ -28,7 +28,7 @@ export default function ProgramsList() {
     }
   );
 
-  const handleNavigatePrograms = (e:string) => navigate(ROUTES.STUDENT.FACULTY_PROGRAMS_PAGE,{state:e})
+  const handleNavigatePrograms = (e:string) => navigate(ROUTES.USER.FACULTY_PROGRAMS_PAGE,{state:e})
   let ordinalNum = 0;
 
 

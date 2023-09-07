@@ -27,7 +27,7 @@ const Attance: React.FC = () => {
     if (localStudent) {
       const student = JSON.parse(localStudent);
       return studentService
-        .getStudentAttance(student.studentID, semester)
+        .getStudentAttance(student.id, semester)
         .catch((err) => console.log(err));
     }
   });

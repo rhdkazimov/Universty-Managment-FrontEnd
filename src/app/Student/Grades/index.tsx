@@ -16,7 +16,7 @@ const Grades: React.FC = () => {
       if (localStudent) {
         const student = JSON.parse(localStudent);
         return studentService
-          .getStudentGrades(student.studentID)
+          .getStudentGrades(student.id)
           .catch((err) => console.log(err));
       }
     }

@@ -15,25 +15,25 @@ export const StudentInfo: React.FC = () => {
     else {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
-      navigate(ROUTES.STUDENT.LOGIN);
+      navigate(ROUTES.USER.LOGIN);
     }
   }, []);
 
   return studentInfo ? (
-    <TableContainer className="studentInfoTable">
+    <TableContainer className="userInfoTable">
       <Table variant="simple">
         <Tbody>
           <Tr>
-            <td className="studentImgBox"  rowSpan={20} >
-                <img
-                className="studentImgPhoto"
-                  src={studentInfo.img}
-                  alt="Tələbə"
-                />
+            <td className="userImgBox" rowSpan={20}>
+              <img
+                className="userImgPhoto"
+                src={studentInfo.img}
+                alt="Tələbə"
+              />
             </td>
             <Td>Tələbə Nömrəniz :</Td>
             <Td>
-              <b>{studentInfo.studentID}</b>
+              <b>{studentInfo.id}</b>
             </Td>
           </Tr>
           <Tr>

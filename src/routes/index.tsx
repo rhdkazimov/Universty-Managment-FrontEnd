@@ -15,12 +15,13 @@ import FacultyProgram from "../app/User/Programs/FacultyProgram";
 import Grades from "../app/Student/Grades";
 import Attance from "../app/Student/Attance";
 import Contact from "../app/User/Contact";
+import { ProtectedStudentRouter } from "../app/components/ProtectedStudentRouter";
 
 export const AppRoutes: React.FC = () => {
   return (
     <Routes>
       <Route
-        path={ROUTES.STUDENT.LOGIN}
+        path={ROUTES.USER.LOGIN}
         element={
           <ProtectedLoginRouter>
             <UserAuthProvider>
@@ -32,7 +33,7 @@ export const AppRoutes: React.FC = () => {
       <Route
         path={ROUTES.STUDENT.MAIN_PAGE}
         element={
-          <ProtectedRouter>
+          <ProtectedStudentRouter>
             <UserProvider>
               <Navbar />
               <div className="flex">
@@ -40,11 +41,11 @@ export const AppRoutes: React.FC = () => {
                 <StudentInfo />
               </div>
             </UserProvider>
-          </ProtectedRouter>
+          </ProtectedStudentRouter>
         }
       />
       <Route
-        path={ROUTES.STUDENT.ANOUNCE_PAGE}
+        path={ROUTES.USER.ANOUNCE_PAGE}
         element={
           <ProtectedRouter>
             <UserProvider>
@@ -58,7 +59,7 @@ export const AppRoutes: React.FC = () => {
         }
       />
       <Route
-        path={ROUTES.STUDENT.PROGRAMS_PAGE}
+        path={ROUTES.USER.PROGRAMS_PAGE}
         element={
           <ProtectedRouter>
             <UserProvider>
@@ -72,7 +73,7 @@ export const AppRoutes: React.FC = () => {
         }
       />
       <Route
-        path={ROUTES.STUDENT.FACULTY_PROGRAMS_PAGE}
+        path={ROUTES.USER.FACULTY_PROGRAMS_PAGE}
         element={
           <ProtectedRouter>
             <UserProvider>
@@ -88,7 +89,7 @@ export const AppRoutes: React.FC = () => {
       <Route
         path={ROUTES.STUDENT.GRADES}
         element={
-          <ProtectedRouter>
+          <ProtectedStudentRouter>
             <UserProvider>
               <Navbar />
               <div className="flex">
@@ -96,13 +97,13 @@ export const AppRoutes: React.FC = () => {
                 <Grades />
               </div>
             </UserProvider>
-          </ProtectedRouter>
+          </ProtectedStudentRouter>
         }
       />
       <Route
         path={ROUTES.STUDENT.ATTANCE}
         element={
-          <ProtectedRouter>
+          <ProtectedStudentRouter>
             <UserProvider>
               <Navbar />
               <div className="flex">
@@ -110,11 +111,11 @@ export const AppRoutes: React.FC = () => {
                 <Attance />
               </div>
             </UserProvider>
-          </ProtectedRouter>
+          </ProtectedStudentRouter>
         }
       />
       <Route
-        path={ROUTES.STUDENT.CONTACT_PAGE}
+        path={ROUTES.USER.CONTACT_PAGE}
         element={
           <ProtectedRouter>
             <UserProvider>

@@ -29,7 +29,7 @@ const FacultyProgram: React.FC = () => {
     }
   );
 
-  const handleReturnList = () => navigate(ROUTES.STUDENT.PROGRAMS_PAGE);
+  const handleReturnList = () => navigate(ROUTES.USER.PROGRAMS_PAGE);
   let ordinalNum = 0;
   return (
     <TableContainer className="facultyProgramContainer">
