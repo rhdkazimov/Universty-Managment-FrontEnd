@@ -33,8 +33,11 @@ const SideBar = () => {
       <div className="menuInfo">
         <ul>
           <li
-            className={loginnedUserInfo?.type === "student" ? "" : "d-none"}
-            onClick={() => navigate(ROUTES.STUDENT.MAIN_PAGE)}
+            onClick={() => {
+              loginnedUserInfo?.type === "student"
+                ? navigate(ROUTES.STUDENT.MAIN_PAGE)
+                : navigate(ROUTES.TEACHER.MAIN_PAGE);
+            }}
           >
             <HomeIcon className="icon" />
             <p className={sideBarIsOpen ? "" : "d-none"}>Ana Səhifə</p>
@@ -50,8 +53,11 @@ const SideBar = () => {
             </p>
           </li>
           <li
-            className={loginnedUserInfo?.type === "student" ? "" : "d-none"}
-            onClick={() => navigate(ROUTES.STUDENT.GRADES)}
+            onClick={() => {
+              loginnedUserInfo?.type === "student"
+                ? navigate(ROUTES.STUDENT.GRADES)
+                : navigate(ROUTES.TEACHER.CHECK_GRADES);
+            }}
           >
             <GradingIcon className="icon" />
             <p className={sideBarIsOpen ? "" : "d-none"}>Qiymət Cədvəli</p>

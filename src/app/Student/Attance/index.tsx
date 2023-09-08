@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { FadeLoader } from "react-spinners";
 import "./index.scss";
+import { IStudentAttanceData } from "../../../models";
 
 const Attance: React.FC = () => {
   const { studentService } = useService();
@@ -81,33 +82,43 @@ const Attance: React.FC = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {studentAttanceData.data.lessons.map((attance: any) => {
-            orderNum++;
-            return (
-              <Tr
-                sx={{
-                  "&:last-child td, &:last-child th": { border: 0 },
-                }}
-              >
-                <Td>{orderNum}</Td>
-                <Td>{attance.code}</Td>
-                <Td>{attance.name}</Td>
-                <Td>{attance.teacher}</Td>
-                <Td>{attance.time}</Td>
-                <Td>{attance.plus}</Td>
-                <Td>{attance.absance}</Td>
-                <Td>{attance.percentage}</Td>
-                <Td>
-                  <div className="progressBox">
-                    <div
-                      style={{ width: attance.percentage }}
-                      className="progressBar"
-                    ></div>
-                  </div>
-                </Td>
-              </Tr>
-            );
-          })}
+          {studentAttanceData.data.lessons.map(
+            ({
+              code,
+              name,
+              teacher,
+              time,
+              plus,
+              absance,
+              percentage,
+            }: IStudentAttanceData) => {
+              orderNum++;
+              return (
+                <Tr
+                  sx={{
+                    "&:last-child td, &:last-child th": { border: 0 },
+                  }}
+                >
+                  <Td>{orderNum}</Td>
+                  <Td>{code}</Td>
+                  <Td>{name}</Td>
+                  <Td>{teacher}</Td>
+                  <Td>{time}</Td>
+                  <Td>{plus}</Td>
+                  <Td>{absance}</Td>
+                  <Td>{percentage}</Td>
+                  <Td>
+                    <div className="progressBox">
+                      <div
+                        style={{ width: percentage }}
+                        className="progressBar"
+                      ></div>
+                    </div>
+                  </Td>
+                </Tr>
+              );
+            }
+          )}
         </Tbody>
       </Table>
     </div>

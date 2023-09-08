@@ -20,15 +20,17 @@ export const Announce = () => {
       <h2>Elanlar</h2>
       <div>
         {usersAnnounceData?.data.length ? (
-          usersAnnounceData?.data.map((anncs: IAnnounceInfo) => {
-            return (
-              <div className="announceItem">
-                <i>{anncs.headerInfo}</i>
-                <p>{anncs.mainInfo}</p>
-                <span>{anncs.date}</span>
-              </div>
-            );
-          })
+          usersAnnounceData?.data.map(
+            ({ headerInfo, mainInfo, date }: IAnnounceInfo) => {
+              return (
+                <div className="announceItem">
+                  <i>{headerInfo}</i>
+                  <p>{mainInfo}</p>
+                  <span>{date}</span>
+                </div>
+              );
+            }
+          )
         ) : (
           <span className="noAnnounce">Elan Yoxdur !</span>
         )}

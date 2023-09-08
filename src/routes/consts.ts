@@ -14,6 +14,7 @@ export const ROUTES = {
   TEACHER: {
     MAIN_PAGE: "/home",
     CHECK_GRADES: "/check-grades",
+    CHECK_STUDENTS_GRADES: "/students-grades",
     CHECK_ATTANCE: "/check-attance",
   },
 };

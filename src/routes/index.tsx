@@ -16,6 +16,10 @@ import Grades from "../app/Student/Grades";
 import Attance from "../app/Student/Attance";
 import Contact from "../app/User/Contact";
 import { ProtectedStudentRouter } from "../app/components/ProtectedStudentRouter";
+import { ProtectedTeacherRouter } from "../app/components/ProtectedTeacherRouter";
+import { TeacherInfo } from "../app/Teacher/Home";
+import GradesNote from "../app/Teacher/Grades";
+import StudentsGradesNote from "../app/Teacher/Grades/StudentsGradesNote";
 
 export const AppRoutes: React.FC = () => {
   return (
@@ -126,6 +130,48 @@ export const AppRoutes: React.FC = () => {
               </div>
             </UserProvider>
           </ProtectedRouter>
+        }
+      />
+      <Route
+        path={ROUTES.TEACHER.MAIN_PAGE}
+        element={
+          <ProtectedTeacherRouter>
+            <UserProvider>
+              <Navbar />
+              <div className="flex">
+                <SideBar />
+                <TeacherInfo />
+              </div>
+            </UserProvider>
+          </ProtectedTeacherRouter>
+        }
+      />
+      <Route
+        path={ROUTES.TEACHER.CHECK_GRADES}
+        element={
+          <ProtectedTeacherRouter>
+            <UserProvider>
+              <Navbar />
+              <div className="flex">
+                <SideBar />
+                <GradesNote />
+              </div>
+            </UserProvider>
+          </ProtectedTeacherRouter>
+        }
+      />
+      <Route
+        path={ROUTES.TEACHER.CHECK_STUDENTS_GRADES}
+        element={
+          <ProtectedTeacherRouter>
+            <UserProvider>
+              <Navbar />
+              <div className="flex">
+                <SideBar />
+                <StudentsGradesNote />
+              </div>
+            </UserProvider>
+          </ProtectedTeacherRouter>
         }
       />
       <Route path="*" element={<NotFound />} />

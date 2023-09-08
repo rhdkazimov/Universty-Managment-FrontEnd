@@ -1,7 +1,16 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { DUserData, DAnnouncesData, DProgramsData, DUserGrades, DStudentAttance, DUniverstySettingData } = require("./data/users");
+const {
+  DUserData,
+  DAnnouncesData,
+  DProgramsData,
+  DUserGrades,
+  DStudentAttance,
+  DUniverstySettingData,
+  DTeachersGroup,
+  DStudentGroupData,
+} = require("./data/users");
 const PORT = process.env.PORT | 3001;
 
 const app = express();
@@ -9,19 +18,13 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get("/", (_, res) => {
-  res.json({ systemMessage: "Working,Not Problem" });
-});
 
 app.post("/login", (req, res) => {
-  if (
-    req.body.userName === DUserData.studentID &&
-    req.body.password === DUserData.password
-  ) {
-    res.json({ token: "YourTOKEN-CODE", user: DUserData });
-  } else {
-    res.sendStatus(400);
-  }
+  DUserData.forEach((data) => {
+    if (req.body.userName === data.id && req.body.password === data.password) {
+      res.status(200).json({ token: "YourTOKEN-CODE", user: data });
+    }
+  });
 });
 
 app.get("/AllAnnounces", (_, res) => {
@@ -49,10 +52,21 @@ app.get("/system-settings-data", (_, res) => {
   res.json(DUniverstySettingData);
 });
 
+app.post("/contact/support/:id", (req, res) => {
+  res.status(200);
+});
 
-app.post("/contact/support/:id",(req,res)=>{
-  console.log(req.params);
-  res.status(200)
+app.post("/grade-note/:id",(req,res)=>{
+  console.log(req.body);
+  res.sendStatus(200)
+})
+
+app.get("/groups/:id",(req,res)=>{
+  res.json(DTeachersGroup)
+})
+
+app.get("/group/students/:id",(req,res)=>{
+  res.json(DStudentGroupData)
 })
 
 app.listen(PORT, () => {

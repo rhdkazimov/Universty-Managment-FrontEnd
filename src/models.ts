@@ -80,3 +80,36 @@ export interface IContactForm {
   header: string;
   text: string;
 }
+
+export interface IStudentAttanceData {
+  code: string;
+  name: string;
+  teacher: string;
+  time: number;
+  plus: number;
+  absance: number;
+  percentage: number;
+}
+
+export interface ITeacherGroups {
+  groupCode: string;
+  studentCounts: number;
+  lessonName:string;
+}
+
+export interface IGroupInfo {
+  groupCode: string;
+  lessonName:string;
+  students:IGroupStudents[];
+}
+
+export interface IGroupStudents {
+  name: string;
+  surname: string;
+  SDF1: number;
+  SDF2: number;
+  SDF3: number;
+  TSI: number;
+  SSI: number;
+  ORT: number;
+}

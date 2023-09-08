@@ -20,13 +20,13 @@ export const TeacherInfo: React.FC = () => {
   }, []);
 
   return teacherInfo ? (
-    <TableContainer className="studentInfoTable">
+    <TableContainer className="userInfoTable">
       <Table variant="simple">
         <Tbody>
           <Tr>
-            <td className="studentImgBox" rowSpan={20}>
+            <td className="userImgBox" rowSpan={20}>
               <img
-                className="studentImgPhoto"
+                className="userImgPhoto"
                 src={teacherInfo.img}
                 alt="teacher"
               />

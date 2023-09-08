@@ -35,11 +35,11 @@ const Grades: React.FC = () => {
       {
         //TABLE DESIGN PROBLEM
         studentGradeData?.data.length ? (
-          studentGradeData.data.map((gradeData: IStudentGrades) => {
+          studentGradeData.data.map(({years,semester,grades}: IStudentGrades) => {
             return (
               <div className="gradeDataBox">
                 <h1 className="gradeDataDate">
-                  {gradeData.years} {gradeData.semester}.semestr
+                  {years} {semester}.semestr
                 </h1>
                 <Table className="gradeDataTable">
                   <Thead>
@@ -55,21 +55,21 @@ const Grades: React.FC = () => {
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {gradeData.grades.map((grade: IStudentGradesInfo) => {
+                    {grades.map(({lessonCode,lessonName,SDF1,SDF2,SDF3,TSI,SSI,ORT}: IStudentGradesInfo) => {
                       return (
                         <Tr
                           sx={{
                             "&:last-child td, &:last-child th": { border: 0 },
                           }}
                         >
-                          <Td>{grade.lessonCode}</Td>
-                          <Td>{grade.lessonName}</Td>
-                          <Td>{grade.SDF1}</Td>
-                          <Td>{grade.SDF2}</Td>
-                          <Td>{grade.SDF3}</Td>
-                          <Td>{grade.TSI}</Td>
-                          <Td>{grade.SSI}</Td>
-                          <Td>{grade.ORT}</Td>
+                          <Td>{lessonCode}</Td>
+                          <Td>{lessonName}</Td>
+                          <Td>{SDF1}</Td>
+                          <Td>{SDF2}</Td>
+                          <Td>{SDF3}</Td>
+                          <Td>{TSI}</Td>
+                          <Td>{SSI}</Td>
+                          <Td>{ORT}</Td>
                         </Tr>
                       );
                     })}
