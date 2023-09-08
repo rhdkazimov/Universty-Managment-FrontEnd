@@ -53,7 +53,7 @@ app.get("/system-settings-data", (_, res) => {
 });
 
 app.post("/contact/support/:id", (req, res) => {
-  res.status(200);
+  res.sendStatus(200);
 });
 
 app.post("/grade-note/:id",(req,res)=>{

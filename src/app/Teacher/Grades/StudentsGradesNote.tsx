@@ -9,6 +9,7 @@ import { IGroupInfo, IGroupStudents } from "../../../models";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { ROUTES } from "../../../routes/consts";
 import Swal from "sweetalert2";
+import "./gradesnote.scss"
 
 const StudentsGradesNote = () => {
   const location = useLocation();
@@ -95,12 +96,13 @@ const StudentsGradesNote = () => {
   }
 
   return studentsGradesData.data ? (
-    <div>
+    <div className="studentsGradesDataBG">
+    <div className="studentsGradesDataBox">
       <h1>
         {studentsGradesData.data.groupCode} -
         {studentsGradesData.data.lessonName}
       </h1>
-      <div onClick={handleReturnTeacherGroups}>
+      <div className="returnBox" onClick={handleReturnTeacherGroups}>
         <ChevronLeftIcon />
         <span>Geri qayıt</span>
       </div>
@@ -183,11 +185,14 @@ const StudentsGradesNote = () => {
           )}
         </Tbody>
       </Table>
+      <div className="actionBtn">
       {isEdit ? (
         <Button onClick={handleEditGrades}>Düzəliş et</Button>
       ) : (
         <Button onClick={handleSaveChanges}>Yaddaşa Vur</Button>
       )}
+      </div>
+    </div>
     </div>
   ) : (
     <div className="loaderBox">

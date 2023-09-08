@@ -18,7 +18,7 @@ export class StudentService extends HttpClient {
     const localStudent = localStorage.getItem("user");
     if (localStudent) {
       const student = JSON.parse(localStudent);
-      return await this.post(`contact/support/${student.studentID}`, body);
+      return await this.post(`contact/support/${student.id}`, body);
     }
   }
 }

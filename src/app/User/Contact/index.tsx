@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { EQueryKeys } from "../../../enums";
 import "./index.scss";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../../routes/consts";
 
 const initialValue = {
   header: "",
@@ -15,14 +17,30 @@ const initialValue = {
 
 const Contact: React.FC = () => {
   const { studentService, userService } = useService();
+  const navigate = useNavigate();
   const [contactFormValues, setContactFormValues] =
     React.useState(initialValue);
   const { mutateAsync: mutateContactForm, isLoading: isLoginLoading } =
     useMutation((requestBody: IContactForm) => {
       return studentService
         .postContactForm(requestBody)
-        .then()
-        .catch((err) => console.log(err));
+        .then(() => {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Mesajınız Uğurla Göndərildi",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate(ROUTES.USER.ANOUNCE_PAGE);
+        })
+        .catch((err) => {
+          Swal.fire({
+            icon: "error",
+            title: "Xəta baş verdi",
+            text: "Daha sonra yenidən cəhd edin",
+          });
+        });
     });
   const { data: universtySettingData }: any | undefined = useQuery(
     [EQueryKeys.getUniverstySettingData],
