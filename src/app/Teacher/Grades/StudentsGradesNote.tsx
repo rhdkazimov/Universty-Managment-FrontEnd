@@ -67,7 +67,7 @@ const StudentsGradesNote = () => {
 
   const handleReturnTeacherGroups = () => {
     if (isEdit) {
-      return navigate(ROUTES.TEACHER.CHECK_GRADES);
+      return navigate(ROUTES.TEACHER.TEACHER_GROUPS);
     } else {
       Swal.fire({
         title: "Geri Qayıtmağ İstədiyinizdən Əminsiniz?",
@@ -80,7 +80,7 @@ const StudentsGradesNote = () => {
         cancelButtonText: "Ləğv et",
       }).then((result) => {
         if (result.isConfirmed) {
-          return navigate(ROUTES.TEACHER.CHECK_GRADES);
+          return navigate(ROUTES.TEACHER.TEACHER_GROUPS);
         } else return null;
       });
     }

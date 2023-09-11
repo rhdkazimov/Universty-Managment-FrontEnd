@@ -1,0 +1,43 @@
+.studentsAttanceDataBG {
+  padding: 10px;
+  width: 100%;
+  background-color: #ecf0f5;
+  .studentsAttanceDataBox {
+    padding: 5px;
+    background-color: white;
+    border-top: 3px solid rgb(199, 199, 199);
+    h1 {
+      font-weight: 500;
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+    .returnBox {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: #337ab7;
+      &:hover {
+        color: #1d3a53;
+      }
+    }
+    table {
+      .selectBoxTh {
+        display: flex;
+        justify-content: center;
+      }
+      .selectBoxTD {
+        display: flex;
+        justify-content: space-between;
+        .selectBox {
+          font-size: 18px;
+        }
+      }
+      margin: 10px 0;
+    }
+    .actionBtn {
+      display: flex;
+      flex-direction: row-reverse;
+      margin-right: 30px;
+    }
+  }
+}

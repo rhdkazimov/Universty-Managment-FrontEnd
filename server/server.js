@@ -10,6 +10,7 @@ const {
   DUniverstySettingData,
   DTeachersGroup,
   DStudentGroupData,
+  DTeacherGroupAttance,
 } = require("./data/users");
 const PORT = process.env.PORT | 3001;
 
@@ -17,7 +18,6 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
-
 
 app.post("/login", (req, res) => {
   DUserData.forEach((data) => {
@@ -56,18 +56,27 @@ app.post("/contact/support/:id", (req, res) => {
   res.sendStatus(200);
 });
 
-app.post("/grade-note/:id",(req,res)=>{
+app.post("/grade-note/:id", (req, res) => {
   console.log(req.body);
-  res.sendStatus(200)
-})
+  res.sendStatus(200);
+});
 
-app.get("/groups/:id",(req,res)=>{
-  res.json(DTeachersGroup)
-})
+app.get("/groups/:id", (req, res) => {
+  res.json(DTeachersGroup);
+});
 
-app.get("/group/students/:id",(req,res)=>{
-  res.json(DStudentGroupData)
-})
+app.get("/group/students/:id", (req, res) => {
+  res.json(DStudentGroupData);
+});
+
+app.get("/group/attance/:id", (req, res) => {
+  res.json(DTeacherGroupAttance);
+});
+
+app.post("group/save/attance/:id", (req, res) => {
+  // res.sendStatus(200);
+  res.json({salam:"salam"})
+});
 
 app.listen(PORT, () => {
   console.log("Server Is Working...");

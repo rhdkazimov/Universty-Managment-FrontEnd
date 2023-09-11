@@ -8,7 +8,7 @@ import { ProtectedRouter } from "../app/components/ProtectedRouter";
 import { StudentInfo } from "../app/Student/Home";
 import Navbar from "../app/components/navbar/Navbar";
 import SideBar from "../app/components/sidebar/SideBar";
-import { UserContext, UserProvider } from "../context/UserContext";
+import { UserProvider } from "../context/UserContext";
 import { Announce } from "../app/Student/Announcement";
 import ProgramsList from "../app/User/Programs";
 import FacultyProgram from "../app/User/Programs/FacultyProgram";
@@ -18,8 +18,9 @@ import Contact from "../app/User/Contact";
 import { ProtectedStudentRouter } from "../app/components/ProtectedStudentRouter";
 import { ProtectedTeacherRouter } from "../app/components/ProtectedTeacherRouter";
 import { TeacherInfo } from "../app/Teacher/Home";
-import GradesNote from "../app/Teacher/Grades";
 import StudentsGradesNote from "../app/Teacher/Grades/StudentsGradesNote";
+import TeacherGroups from "../app/Teacher/Groups";
+import GroupAttance from "../app/Teacher/Attance";
 
 export const AppRoutes: React.FC = () => {
   return (
@@ -147,14 +148,14 @@ export const AppRoutes: React.FC = () => {
         }
       />
       <Route
-        path={ROUTES.TEACHER.CHECK_GRADES}
+        path={ROUTES.TEACHER.TEACHER_GROUPS}
         element={
           <ProtectedTeacherRouter>
             <UserProvider>
               <Navbar />
               <div className="flex">
                 <SideBar />
-                <GradesNote />
+                <TeacherGroups />
               </div>
             </UserProvider>
           </ProtectedTeacherRouter>
@@ -169,6 +170,20 @@ export const AppRoutes: React.FC = () => {
               <div className="flex">
                 <SideBar />
                 <StudentsGradesNote />
+              </div>
+            </UserProvider>
+          </ProtectedTeacherRouter>
+        }
+      />
+      <Route
+        path={ROUTES.TEACHER.CHECK_ATTANCE}
+        element={
+          <ProtectedTeacherRouter>
+            <UserProvider>
+              <Navbar />
+              <div className="flex">
+                <SideBar />
+                <GroupAttance />
               </div>
             </UserProvider>
           </ProtectedTeacherRouter>

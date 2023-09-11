@@ -8,7 +8,7 @@ import { ITeacherGroups } from "../../../models";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../routes/consts";
 import "./index.scss";
-const GradesNote: React.FC = () => {
+const TeacherGroups: React.FC = () => {
   const { teacherService } = useService();
   const navigate = useNavigate();
   const { data: teacherGroupsData, isLoading }: any | undefined = useQuery(
@@ -24,8 +24,12 @@ const GradesNote: React.FC = () => {
     }
   );
 
-  const handleNavigateStudents = (e: string) => {
+  const handleNavigateStudentsGrades = (e: string) => {
     navigate(ROUTES.TEACHER.CHECK_STUDENTS_GRADES, { state: e });
+  };
+
+  const handleNavigateStudentsAttance = (e: string) => {
+    navigate(ROUTES.TEACHER.CHECK_ATTANCE, { state: e });
   };
 
   if (isLoading) {
@@ -57,8 +61,15 @@ const GradesNote: React.FC = () => {
                     <Td>{groupCode}</Td>
                     <Td>{lessonName}</Td>
                     <Td>{studentCounts}</Td>
-                    <Td onClick={() => handleNavigateStudents(groupCode)}>
-                      <Button className="moreInformation">Daha Ətraflı</Button>
+                    <Td onClick={() => handleNavigateStudentsGrades(groupCode)}>
+                      <Button className="moreInformation">
+                        Qiymətləndirmə
+                      </Button>
+                    </Td>
+                    <Td
+                      onClick={() => handleNavigateStudentsAttance(groupCode)}
+                    >
+                      <Button className="moreInformation">Davamiyyət</Button>
                     </Td>
                   </Tr>
                 );
@@ -75,4 +86,4 @@ const GradesNote: React.FC = () => {
   );
 };
 
-export default GradesNote;
+export default TeacherGroups;

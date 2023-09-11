@@ -56,11 +56,15 @@ const SideBar = () => {
             onClick={() => {
               loginnedUserInfo?.type === "student"
                 ? navigate(ROUTES.STUDENT.GRADES)
-                : navigate(ROUTES.TEACHER.CHECK_GRADES);
+                : navigate(ROUTES.TEACHER.TEACHER_GROUPS);
             }}
           >
             <GradingIcon className="icon" />
-            <p className={sideBarIsOpen ? "" : "d-none"}>Qiymət Cədvəli</p>
+            <p className={sideBarIsOpen ? "" : "d-none"}>
+              {loginnedUserInfo?.type === "student"
+                ? "Qiymət Cədvəli"
+                : "Qruplar"}
+            </p>
           </li>
           <li
             className={loginnedUserInfo?.type === "student" ? "" : "d-none"}

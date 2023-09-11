@@ -94,13 +94,13 @@ export interface IStudentAttanceData {
 export interface ITeacherGroups {
   groupCode: string;
   studentCounts: number;
-  lessonName:string;
+  lessonName: string;
 }
 
 export interface IGroupInfo {
   groupCode: string;
-  lessonName:string;
-  students:IGroupStudents[];
+  lessonName: string;
+  students: IGroupStudents[];
 }
 
 export interface IGroupStudents {
@@ -112,4 +112,15 @@ export interface IGroupStudents {
   TSI: number;
   SSI: number;
   ORT: number;
+}
+
+export interface IGroupStudentAttance {
+  id: string;
+  name: string;
+  surname: string;
+  attance: IStudentAttanceForTeacher[];
+}
+
+export interface IStudentAttanceForTeacher {
+  DVM: string;
 }
