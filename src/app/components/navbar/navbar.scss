@@ -131,8 +131,10 @@
             flex-direction: row-reverse;
             padding: 10px;
             background-color: #fff;
+            z-index: 1;
             .userLeftBtn{
                 color: red;
+                z-index: 1;
             }
         }
       }
