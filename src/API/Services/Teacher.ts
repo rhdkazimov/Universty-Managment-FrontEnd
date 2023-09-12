@@ -1,4 +1,4 @@
-import { IGroupInfo, IGroupStudentAttance } from "../../models";
+import { IGroupInfo, IGroupStudentAttance, IGroupStudents } from "../../models";
 import { HttpClient } from "../HTTPClients";
 
 export class TeacherService extends HttpClient {
@@ -13,7 +13,7 @@ export class TeacherService extends HttpClient {
     return await this.get(`group/students/${id}`);
   }
 
-  async saveStudentsGrade(id: string, body: IGroupInfo) {
+  async saveStudentsGrade(id: string, body: IGroupStudents[]) {
     return await this.post(`grade-note/${id}`, body);
   }
 
@@ -24,4 +24,5 @@ export class TeacherService extends HttpClient {
   async saveStudentsAttance(id: string, body: IGroupStudentAttance[]) {
     return await this.post(`group/save/attance/${id}`, body);
   }
+
 }

@@ -56,10 +56,6 @@ app.post("/contact/support/:id", (req, res) => {
   res.sendStatus(200);
 });
 
-app.post("/grade-note/:id", (req, res) => {
-  console.log(req.body);
-  res.sendStatus(200);
-});
 
 app.get("/groups/:id", (req, res) => {
   res.json(DTeachersGroup);
@@ -73,10 +69,17 @@ app.get("/group/attance/:id", (req, res) => {
   res.json(DTeacherGroupAttance);
 });
 
-app.post("group/save/attance/:id", (req, res) => {
-  // res.sendStatus(200);
-  res.json({salam:"salam"})
+app.post("/grade-note/:id", (req, res) => {
+  console.log(req.body);
+  console.log(req.params);
+  res.sendStatus(200);
 });
+
+app.post("/group/save/attance/:id", (req, res) => {
+  res.sendStatus(200);
+  // res.json({salam:"salam"})
+});
+
 
 app.listen(PORT, () => {
   console.log("Server Is Working...");

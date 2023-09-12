@@ -18,8 +18,9 @@ const GroupAttance = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { teacherService } = useService();
-  const [studentAttance, setStudentAttance] =
-    React.useState<IGroupStudentAttance>();
+  const [studentAttance, setStudentAttance] = React.useState<
+    IGroupStudentAttance[]
+  >([]);
   const [isEdit, setIsEdit] = React.useState(true);
   const { data: studentsAttanceData, isLoading }: any | undefined = useQuery(
     [EQueryKeys.getGroupStudentAttance],
@@ -29,8 +30,12 @@ const GroupAttance = () => {
         .catch((err) => {
           alert("Site not responding... Try after again");
         });
+    },
+    {
+      onSuccess: () => setStudentAttance(studentsAttanceData?.data),
     }
   );
+
   const { mutateAsync: mutateStudentsAttance, isLoading: isSaveLoading } =
     useMutation((requestBody: IGroupStudentAttance[]) => {
       return teacherService
@@ -56,22 +61,29 @@ const GroupAttance = () => {
         });
     });
 
-  // Set data state when changing input value problem
-  const handleChangeInput = ({
-    target: { value },
-  }: React.ChangeEvent<HTMLSelectElement>) => {
-    // setStudentAttance()
+  const handleChangeInput = (
+    { target: { value } }: React.ChangeEvent<HTMLSelectElement>,
+    studentIndex: number,
+    attanceIndex: number
+  ) => {
+    setStudentAttance((previus) => {
+      const updatedStudentGrade = [...previus];
+      const updatedItem: IStudentAttanceForTeacher = {
+        ...updatedStudentGrade[studentIndex].attance[attanceIndex],
+      };
+      updatedItem.DVM = value;
+      updatedStudentGrade[studentIndex].attance[attanceIndex] = updatedItem;
+      return updatedStudentGrade;
+    });
   };
   const handleEditAttances = () => {
     setIsEdit(false);
   };
 
-  // AFTER HANDLE DATA SAVE STATE MUST BE HANDLE THIS POST PARAMETER
   const handleSaveChanges = () => {
-    mutateStudentsAttance(studentsAttanceData.data);
+    mutateStudentsAttance(studentAttance);
     setIsEdit(true);
   };
-
 
   const handleReturnTeacherGroups = () => {
     if (isEdit) {
@@ -121,19 +133,25 @@ const GroupAttance = () => {
           </Thead>
           <Tbody>
             {studentsAttanceData.data.map(
-              ({ id, name, surname, attance }: IGroupStudentAttance) => {
+              (
+                { id, name, surname, attance }: IGroupStudentAttance,
+                studentIdx: number
+              ) => {
                 ordinalNum++;
                 return (
                   <Tr key={id}>
                     <Td>{ordinalNum}</Td>
                     <Td>{name + " " + surname}</Td>
                     <Td className="selectBoxTD">
-                      {attance.map(({ DVM, idx }: any) => (
+                      {attance.map(({ DVM }: any, dvmIdx: number) => (
                         <select
+                          key={dvmIdx}
                           defaultValue={DVM === "+" ? "+" : "-"}
                           className="selectBox"
                           name="DVM"
-                          onChange={(e) => handleChangeInput(e)}
+                          onChange={(e) =>
+                            handleChangeInput(e, studentIdx, dvmIdx)
+                          }
                           disabled={isEdit}
                         >
                           <option value="-">q</option>
