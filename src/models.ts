@@ -1,20 +1,20 @@
 export interface ILoginUser {
-  userName: string;
+  id: number;
   password: string;
 }
 
 export interface ILoginnedStudent {
   type: string;
-  id: string;
+  id: number;
   password: string;
   firstName: string;
   surName: string;
-  birthDay: string;
+  birthday: string;
   mail: string;
   faculty: string;
   specialty: string;
   language: string;
-  includedYear: number;
+  includeYear: number;
   academicHelper: string;
   status: boolean;
   perYear: number;
@@ -29,7 +29,7 @@ export interface ILoginnedTeacher {
   password: string;
   firstName: string;
   surName: string;
-  birthDay: string;
+  birthday: string;
   mail: string;
   faculty: string;
   specialty: string;
@@ -45,18 +45,15 @@ export interface IAnnounceInfo {
 }
 
 export interface IPrograms {
-  sectionCode: string;
-  sectionName: string;
-  sectionLessons: string[];
-  sectionsProgramsForYear: ISectionProgramsFor[];
+  id:number;
+  name: string;
+  code: string;
+  lessons: ISectionProgramsFor[];
 }
 
 export interface ISectionProgramsFor {
-  year: number;
-  code: number;
-  lang: string;
-  programName: string;
-  faculty: string;
+  id: number;
+  name: string;
 }
 
 export interface IStudentGrades {
@@ -92,9 +89,20 @@ export interface IStudentAttanceData {
 }
 
 export interface ITeacherGroups {
+  id: number;
+  group: ITeacherGroupsGroup;
+  lesson: ITeacherGroupsLesson;
+}
+
+export interface ITeacherGroupsLesson{
+  id:number;
+  name: string;
+}
+
+export interface ITeacherGroupsGroup {
+  id:number;
   groupCode: string;
-  studentCounts: number;
-  lessonName: string;
+  studentsCount: number;
 }
 
 export interface IGroupInfo {
@@ -104,14 +112,15 @@ export interface IGroupInfo {
 }
 
 export interface IGroupStudents {
-  name: string;
-  surname: string;
-  SDF1: number;
-  SDF2: number;
-  SDF3: number;
-  TSI: number;
-  SSI: number;
-  ORT: number;
+  id:number;
+  firstName: string;
+  surName: string;
+  sdF1: number;
+  sdF2: number;
+  sdF3: number;
+  tsi: number;
+  ssi: number;
+  ort: number;
 }
 
 export interface IGroupStudentAttance {

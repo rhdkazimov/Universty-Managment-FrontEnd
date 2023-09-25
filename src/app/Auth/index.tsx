@@ -12,12 +12,12 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes/consts";
 
 const initialLoginValue = {
-  userName: "",
+  id: 0,
   password: "",
 };
 
 const initialLoginErrorValue = {
-  userName: false,
+  id: false,
   password: false,
 };
 
@@ -37,20 +37,21 @@ export const Login:React.FC = () => {
   const handleSumbitLoginForm = () => {
     if (
       loginInputValue.password.replace(/\s/g, "") !== "" &&
-      loginInputValue.userName.replace(/\s/g, "") !== ""
+      loginInputValue.id !== 0
     ) {
-      setLoginInputError({ userName: false, password: false });
+      setLoginInputError({ id: false, password: false });
       mutateLoginUserApplication(loginInputValue).then(()=>{navigate(ROUTES.STUDENT.MAIN_PAGE)
       }).catch((err) => {
+        console.log(err);
         setError(true);
       });
     }
-    if (loginInputValue.password === "" && loginInputValue.userName === "") {
-      setLoginInputError({ userName: true, password: true });
+    if (loginInputValue.password === "" && loginInputValue.id === 0) {
+      setLoginInputError({ id: true, password: true });
     } else if (loginInputValue.password === "") {
-      setLoginInputError({ userName: false, password: true });
-    } else if (loginInputValue.userName === "") {
-      setLoginInputError({ userName: true, password: false });
+      setLoginInputError({ id: false, password: true });
+    } else if (loginInputValue.id === 0) {
+      setLoginInputError({ id: true, password: false });
     }
   };
 
@@ -59,11 +60,11 @@ export const Login:React.FC = () => {
     <Formik initialValues={initialLoginValue} onSubmit={handleSumbitLoginForm}>
       <Form className="login-form">
        {error && <b className="error">Tələbə nömrəsi və ya şifrə səhvdir</b> }
-        <FormControl isInvalid={loginInputError.userName}>
+        <FormControl isInvalid={loginInputError.id}>
           <FormLabel>Tələbə Nömrəsi</FormLabel>
           <Input
             onChange={handleLoginInputChanges}
-            name="userName"
+            name="id"
             placeholder="Telebe İD qeyd edin"
           />
           <FormErrorMessage>Tələbə İD daxil edin</FormErrorMessage>

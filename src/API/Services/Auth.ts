@@ -3,7 +3,8 @@ import { HttpClient } from "../HTTPClients";
 
 export class UserAuthService extends HttpClient{
     constructor() {
-        super("http://localhost:3001");
+        // super("http://localhost:3001");
+        super("https://localhost:7046");
     }
 
 
@@ -12,7 +13,7 @@ export class UserAuthService extends HttpClient{
     // }
 
     async loginUser(body:ILoginUser){
-        return await this.post(`login`,body).then(({data})=>{
+        return await this.post(`api/user/login`,body).then(({data})=>{
             localStorage.setItem("token",data.token);
             localStorage.setItem("user",JSON.stringify(data.user));
         }

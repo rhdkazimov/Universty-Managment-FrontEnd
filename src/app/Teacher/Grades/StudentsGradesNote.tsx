@@ -17,12 +17,14 @@ const StudentsGradesNote = () => {
   const { teacherService } = useService();
   const [studentGrade, setStudentGrade] = React.useState<IGroupStudents[]>([]);
   const [isEdit, setIsEdit] = React.useState(true);
-  const { data: studentsGradesData, isLoading }: any | undefined = useQuery(
+  const { data: studentsGradesData, isLoading,refetch:refetchGrades }: any | undefined = useQuery(
     [EQueryKeys.getGroupStudentsGrades],
     () => {
-      return teacherService.getGroupStudents(location.state).catch((err) => {
-        alert("Site not responding... Try after again");
-      });
+      return teacherService
+        .getGroupStudents(location.state.groupId)
+        .catch((err) => {
+          alert("Not Responding . . .");
+        });
     },
     {
       onSuccess: () => {
@@ -33,7 +35,7 @@ const StudentsGradesNote = () => {
   const { mutateAsync: mutateStudentsGrades, isLoading: isSaveLoading } =
     useMutation((requestBody: IGroupStudents[]) => {
       return teacherService
-        .saveStudentsGrade(location.state, requestBody)
+        .saveStudentsGrade(location.state.lessonId, requestBody)
         .then(() => {
           Swal.fire({
             position: "center",
@@ -43,6 +45,8 @@ const StudentsGradesNote = () => {
             timer: 1500,
           });
           setIsEdit(true);
+          refetchGrades();
+          navigate(ROUTES.TEACHER.TEACHER_GROUPS);
         })
         .catch(() => {
           Swal.fire({
@@ -58,17 +62,16 @@ const StudentsGradesNote = () => {
     { target: { name, value } }: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
-    setStudentGrade((previus) => {
-      const updatedStudentGrade = [...previus];
-      const updatedItem: IGroupStudents = {
-        ...updatedStudentGrade[index],
-      };
-      // No Dynamic Code
-      // updatedItem[name] = parseInt(value);
-      updatedItem.SDF1 = parseInt(value);
-      updatedStudentGrade[index] = updatedItem;
-      return updatedStudentGrade;
-    });
+      setStudentGrade((previus) => {
+        const updatedStudentGrade = [...previus];
+        const updatedItem: IGroupStudents = {
+          ...updatedStudentGrade[index],
+        };
+        if(name === "sdF1" || name === "sdF2" || name === "sdF3" || name === "ssi" || name === "tsi")
+        updatedItem[name] = parseInt(value);
+        updatedStudentGrade[index] = updatedItem;
+        return updatedStudentGrade;
+      });
   };
 
   const handleEditGrades = () => {
@@ -110,7 +113,7 @@ const StudentsGradesNote = () => {
     );
   }
 
-  return studentsGradesData.data ? (
+  return studentsGradesData?.data ? (
     <div className="studentsGradesDataBG">
       <div className="studentsGradesDataBox">
         <h1>
@@ -138,68 +141,69 @@ const StudentsGradesNote = () => {
             {studentsGradesData.data.students.map(
               (
                 {
-                  SDF1,
-                  SDF2,
-                  SDF3,
-                  TSI,
-                  SSI,
-                  ORT,
-                  name,
-                  surname,
+                  id,
+                  sdF1,
+                  sdF2,
+                  sdF3,
+                  tsi,
+                  ssi,
+                  ort,
+                  firstName,
+                  surName,
                 }: IGroupStudents,
                 idx: number
               ) => {
                 ordinalNum++;
                 return (
-                  <Tr key={name + surname}>
+                  <Tr key={id}>
                     <Td>{ordinalNum}</Td>
-                    <Td>{name + " " + surname}</Td>
+                    <Td>{firstName + " " + surName}</Td>
                     <Td>
                       <input
                         type="number"
-                        name="SDF1"
+                        name="sdF1"
                         onChange={(e) => handleChangeInput(e, idx)}
-                        defaultValue={SDF1}
+                        defaultValue={sdF1}
                         disabled={isEdit}
                       />
                     </Td>
                     <Td>
                       <input
                         type="number"
-                        name="SDF2"
+                        name="sdF2"
                         onChange={(e) => handleChangeInput(e, idx)}
-                        defaultValue={SDF2}
+                        defaultValue={sdF2}
                         disabled={isEdit}
                       />
                     </Td>
                     <Td>
                       <input
                         type="number"
-                        name="SDF3"
+                        name="sdF3"
                         onChange={(e) => handleChangeInput(e, idx)}
-                        defaultValue={SDF3}
+                        defaultValue={sdF3}
                         disabled={isEdit}
                       />
                     </Td>
                     <Td>
                       <input
                         type="number"
-                        name="TSI"
+                        name="tsi"
                         onChange={(e) => handleChangeInput(e, idx)}
-                        defaultValue={TSI}
+                        defaultValue={tsi}
                         disabled={isEdit}
                       />
                     </Td>
                     <Td>
                       <input
                         type="number"
-                        name="SSI"
+                        name="ssi"
                         onChange={(e) => handleChangeInput(e, idx)}
-                        defaultValue={SSI}
+                        defaultValue={ssi}
                         disabled={isEdit}
                       />
                     </Td>
-                    <Td>{ORT}</Td>
+                    <Td>{ort}</Td>
                   </Tr>
                 );
               }

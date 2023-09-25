@@ -17,14 +17,15 @@ const PORT = process.env.PORT | 3001;
 const app = express();
 
 app.use(bodyParser.json());
+
 app.use(cors());
 
 app.post("/login", (req, res) => {
-  DUserData.forEach((data) => {
-    if (req.body.userName === data.id && req.body.password === data.password) {
-      res.status(200).json({ token: "YourTOKEN-CODE", user: data });
-    }
-  });
+  // DUserData.forEach((data) => {
+  //   if (req.body.userName === data.id && req.body.password === data.password) {
+      res.status(200).json({ token: "YourTOKEN-CODE", user: DUserData[0] });
+    // }
+  // });
 });
 
 app.get("/AllAnnounces", (_, res) => {

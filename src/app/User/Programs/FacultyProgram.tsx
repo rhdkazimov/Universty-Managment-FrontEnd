@@ -23,7 +23,7 @@ const FacultyProgram: React.FC = () => {
   const { data: programData }: any | undefined = useQuery(
     [EQueryKeys.getProgramByCode],
     () => {
-      return userService.getProgramByCode(location.state).catch((err) => {
+      return userService.getProgramByCode(location.state.id).catch((err) => {
         alert("Site not responding... Try after again")
       });
     }
@@ -40,40 +40,36 @@ const FacultyProgram: React.FC = () => {
         <ChevronLeftIcon className="returnProgramListIcon" />{" "}
         <span className="returnProgramsList">Siyahıya Geri Dön</span>
       </div>
-      <span className="facultyName">{location.state} kafedrasının illərə görə proqramları</span>
+      <span className="facultyName">{location.state.faculty} kafedrasının illərə görə proqramları</span>
       <Table>
         <Thead>
           <Tr>
             <Th>№</Th>
-            <Th>İli</Th>
-            <Th>Kodu</Th>
-            <Th>Dil</Th>
             <Th>Programın adı (İxtisasın Adı)</Th>
             <Th>Aid Olduğu fakültə</Th>
           </Tr>
         </Thead>
         <Tbody>
-          {programData?.data?.sectionsProgramsForYear.length ? (
-            programData?.data?.sectionsProgramsForYear.map(
-              (program: ISectionProgramsFor) => {
+          {programData?.data?.length? (
+            programData?.data?.map(
+              ({id,name}: ISectionProgramsFor) => {
                 ordinalNum++;
                 return (
                   <Tr
-                    key={program.code}
+                    key={id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <Td>{ordinalNum}</Td>
-                    <Td>{program.year}</Td>
-                    <Td>{program.code}</Td>
-                    <Td>{program.lang}</Td>
-                    <Td>{program.programName}</Td>
-                    <Td>{program.faculty}</Td>
+                    <Td>{name}</Td>
+                    <Td>{location.state.faculty}</Td>
                   </Tr>
                 );
               }
             )
           ) : (
-            <h1>ISLEMIR</h1>
+            <Tr><Td>
+              Məlumat Yoxdur
+              </Td></Tr>
           )}
         </Tbody>
       </Table>

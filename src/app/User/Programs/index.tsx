@@ -2,7 +2,7 @@ import * as React from "react";
 import { useService } from "../../../API/Services";
 import { useQuery } from "react-query";
 import { EQueryKeys } from "../../../enums";
-import { IPrograms } from "../../../models";
+import { IPrograms, ISectionProgramsFor } from "../../../models";
 import {
   Table,
   Thead,
@@ -28,7 +28,10 @@ export default function ProgramsList() {
     }
   );
 
-  const handleNavigatePrograms = (e:string) => navigate(ROUTES.USER.FACULTY_PROGRAMS_PAGE,{state:e})
+  const handleNavigatePrograms = (e:number,code:string) => navigate(ROUTES.USER.FACULTY_PROGRAMS_PAGE,{state:{
+    id:e,
+    faculty:code
+  }})
   let ordinalNum = 0;
 
 
@@ -47,18 +50,17 @@ export default function ProgramsList() {
         </Thead>
         <Tbody>
           {userProgramsData?.data.length ? (
-            userProgramsData.data.map((program: IPrograms) => {
+            userProgramsData.data.map(({id,lessons,name,code}: IPrograms) => {
               ordinalNum++;
               return (
-                <Tr sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                <Tr key={id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                   <Td>{ordinalNum}</Td>
-                  <Td className="sectionCode" onClick={()=>handleNavigatePrograms(program.sectionCode)}>{program.sectionCode}
-                  
+                  <Td className="sectionCode" onClick={()=>handleNavigatePrograms(id,code)}>{"DEPS_"+code}
                   </Td>
-                  <Td>{program.sectionName}</Td>
+                  <Td>{name}</Td>
                   <Td>
-                    {program.sectionLessons.map((les: string) => (
-                      <span>{les}, </span>
+                    {lessons.map(({id,name}:ISectionProgramsFor) => (
+                      <span key={id}>{code+"_"+name.substring(0,2).toUpperCase()}, </span>
                     ))}
                   </Td>
                 </Tr>

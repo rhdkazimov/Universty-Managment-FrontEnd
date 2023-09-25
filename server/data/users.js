@@ -1,7 +1,7 @@
 const DUserData = [
   {
     type: "student",
-    id: "1111",
+    id: 1111,
     password: "code123",
     firstName: "Ad",
     surName: "Soyad",

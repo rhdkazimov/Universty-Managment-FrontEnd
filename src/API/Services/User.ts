@@ -3,19 +3,22 @@ import { HttpClient } from "../HTTPClients";
 
 export class UserService extends HttpClient {
   constructor() {
-    super("http://localhost:3001");
+    // super("http://localhost:3001");
+        super("https://localhost:7046");
+
   }
 
   async getAllAnnounce() {
-    return await this.get(`AllAnnounces`);
+    // return await this.get(`AllAnnounces`);
+    return await this.get(`api/Announce/all`);
   }
 
   async getAllPrograms() {
-    return await this.get(`AllPrograms`);
+    return await this.get(`api/faculty/programs`);
   }
 
-  async getProgramByCode(code: string) {
-    return await this.get(`Program/${code}`);
+  async getProgramByCode(id: number) {
+    return await this.get(`api/faculty/programs/${id}`);
   }
 
   async logout() {
@@ -25,6 +28,6 @@ export class UserService extends HttpClient {
   }
 
   async getUniverstyData() {
-    return await this.get(`system-settings-data`);
+    return await this.get(`api/settings/all`);
   }
 }

@@ -3,18 +3,19 @@ import { HttpClient } from "../HTTPClients";
 
 export class TeacherService extends HttpClient {
   constructor() {
-    super("http://localhost:3001");
+    super("https://localhost:7046");
+    // super("http://localhost:3001");
   }
 
   async getTeachersGroup(id: string) {
-    return await this.get(`groups/${id}`);
+    return await this.get(`api/teacher/groups/${id}`);
   }
   async getGroupStudents(id: string) {
-    return await this.get(`group/students/${id}`);
+    return await this.get(`api/teacher/group/students/${id}`);
   }
 
   async saveStudentsGrade(id: string, body: IGroupStudents[]) {
-    return await this.post(`grade-note/${id}`, body);
+    return await this.put(`api/grade/lesson/${id}`, body);
   }
 
   async getGroupStudentAttance(id: string) {

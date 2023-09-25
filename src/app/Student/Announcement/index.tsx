@@ -21,9 +21,9 @@ export const Announce = () => {
       <div>
         {usersAnnounceData?.data.length ? (
           usersAnnounceData?.data.map(
-            ({ headerInfo, mainInfo, date }: IAnnounceInfo) => {
+            ({headerInfo, mainInfo, date }: IAnnounceInfo) => {
               return (
-                <div className="announceItem">
+                <div key={headerInfo+date} className="announceItem">
                   <i>{headerInfo}</i>
                   <p>{mainInfo}</p>
                   <span>{date}</span>

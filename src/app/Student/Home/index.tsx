@@ -45,7 +45,7 @@ export const StudentInfo: React.FC = () => {
           <Tr>
             <Td>Doğum tarixi: </Td>
             <Td>
-              <b>{studentInfo.birthDay}</b>
+              <b>{studentInfo.birthday}</b>
             </Td>
           </Tr>
           <Tr>
@@ -99,7 +99,7 @@ export const StudentInfo: React.FC = () => {
           <Tr>
             <Td>Qeydiyyat tarixi : </Td>
             <Td>
-              <b>{studentInfo.includedYear}</b>
+              <b>{studentInfo.includeYear}</b>
             </Td>
           </Tr>
         </Tbody>

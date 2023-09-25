@@ -45,7 +45,7 @@ export const TeacherInfo: React.FC = () => {
           <Tr>
             <Td>Doğum tarixi: </Td>
             <Td>
-              <b>{teacherInfo.birthDay}</b>
+              <b>{teacherInfo.birthday}</b>
             </Td>
           </Tr>
           <Tr>

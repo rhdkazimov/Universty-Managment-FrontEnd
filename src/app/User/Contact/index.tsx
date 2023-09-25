@@ -116,11 +116,11 @@ const Contact: React.FC = () => {
           </table>
         </form>
         <div className="contactInformationBox">
-          <span>Telefon: {universtySettingData?.data.number}</span>
-          <span>Faks: {universtySettingData?.data.faks}</span>
-          <span>
-            Mail: <b>{universtySettingData?.data.mail}</b>
-          </span>
+          {
+            universtySettingData?.data.map(({id,key,value}:any)=>{
+             return <span key={id}>{key}: {value}</span>
+            })
+          }
         </div>
       </div>
     </div>

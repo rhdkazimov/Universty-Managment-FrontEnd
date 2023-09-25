@@ -24,11 +24,11 @@ const TeacherGroups: React.FC = () => {
     }
   );
 
-  const handleNavigateStudentsGrades = (e: string) => {
-    navigate(ROUTES.TEACHER.CHECK_STUDENTS_GRADES, { state: e });
+  const handleNavigateStudentsGrades = (e: number,lessonId:number) => {
+    navigate(ROUTES.TEACHER.CHECK_STUDENTS_GRADES, { state: {groupId:e,lessonId:lessonId} });
   };
 
-  const handleNavigateStudentsAttance = (e: string) => {
+  const handleNavigateStudentsAttance = (e: number) => {
     navigate(ROUTES.TEACHER.CHECK_ATTANCE, { state: e });
   };
 
@@ -55,19 +55,19 @@ const TeacherGroups: React.FC = () => {
           </Thead>
           <Tbody>
             {teacherGroupsData.data.map(
-              ({ groupCode, studentCounts, lessonName }: ITeacherGroups) => {
+              ({ group:{id:groupId,groupCode,studentsCount}, id, lesson:{id:lessonId,name} }: ITeacherGroups) => {
                 return (
-                  <Tr key={groupCode}>
+                  <Tr key={id}>
                     <Td>{groupCode}</Td>
-                    <Td>{lessonName}</Td>
-                    <Td>{studentCounts}</Td>
-                    <Td onClick={() => handleNavigateStudentsGrades(groupCode)}>
+                    <Td>{name}</Td>
+                    <Td>{studentsCount}</Td>
+                    <Td onClick={() => handleNavigateStudentsGrades(groupId,lessonId)}>
                       <Button className="moreInformation">
                         Qiymətləndirmə
                       </Button>
                     </Td>
                     <Td
-                      onClick={() => handleNavigateStudentsAttance(groupCode)}
+                      onClick={() => handleNavigateStudentsAttance(groupId)}
                     >
                       <Button className="moreInformation">Davamiyyət</Button>
                     </Td>
