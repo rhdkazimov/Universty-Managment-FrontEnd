@@ -11,6 +11,20 @@ import { ROUTES } from "../../../routes/consts";
 import Swal from "sweetalert2";
 import "./gradesnote.scss";
 
+const initialStudentGradeValue = [
+  {
+    id:0,
+    firstName: "Ad",
+    surName: "Soyad",
+    sdF1: 0,
+    sdF2: 0,
+    sdF3: 0,
+    tsi: 0,
+    ssi: 0,
+    ort: 0,
+  }
+]
+
 const StudentsGradesNote = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -113,7 +127,8 @@ const StudentsGradesNote = () => {
     );
   }
 
-  return studentsGradesData?.data ? (
+//return studentGrade!==undefined? (
+  return studentsGradesData?.data? (
     <div className="studentsGradesDataBG">
       <div className="studentsGradesDataBox">
         <h1>

@@ -28,8 +28,8 @@ const TeacherGroups: React.FC = () => {
     navigate(ROUTES.TEACHER.CHECK_STUDENTS_GRADES, { state: {groupId:e,lessonId:lessonId} });
   };
 
-  const handleNavigateStudentsAttance = (e: number) => {
-    navigate(ROUTES.TEACHER.CHECK_ATTANCE, { state: e });
+  const handleNavigateStudentsAttance = (e: number,lessonId:number) => {
+    navigate(ROUTES.TEACHER.CHECK_ATTANCE, { state: {groupId:e,lessonId:lessonId} });
   };
 
   if (isLoading) {
@@ -67,7 +67,7 @@ const TeacherGroups: React.FC = () => {
                       </Button>
                     </Td>
                     <Td
-                      onClick={() => handleNavigateStudentsAttance(groupId)}
+                      onClick={() => handleNavigateStudentsAttance(groupId,lessonId)}
                     >
                       <Button className="moreInformation">Davamiyyət</Button>
                     </Td>

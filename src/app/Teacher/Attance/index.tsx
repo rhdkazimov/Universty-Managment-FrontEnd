@@ -26,20 +26,24 @@ const GroupAttance = () => {
     [EQueryKeys.getGroupStudentAttance],
     () => {
       return teacherService
-        .getGroupStudentAttance(location.state)
+        .getGroupStudentAttance(location.state.groupId,location.state.lessonId)
         .catch((err) => {
-          alert("Site not responding... Try after again");
+          // alert("Site not responding... Try after again");
+          console.log(err);
         });
     },
     {
-      onSuccess: () => setStudentAttance(studentsAttanceData?.data),
+      onSuccess: () => {setStudentAttance(studentsAttanceData?.data)
+      console.log(studentsAttanceData);
+      console.log(studentsAttanceData?.data);
+      },
     }
   );
 
   const { mutateAsync: mutateStudentsAttance, isLoading: isSaveLoading } =
     useMutation((requestBody: IGroupStudentAttance[]) => {
       return teacherService
-        .saveStudentsAttance(location.state, requestBody)
+        .saveStudentsAttance(location.state.groupId,location.state.lessonId, requestBody)
         .then(() => {
           Swal.fire({
             position: "center",
@@ -52,7 +56,6 @@ const GroupAttance = () => {
         })
         .catch((err) => {
           console.log(err);
-
           Swal.fire({
             icon: "error",
             title: "Xəta baş verdi",
@@ -71,7 +74,7 @@ const GroupAttance = () => {
       const updatedItem: IStudentAttanceForTeacher = {
         ...updatedStudentGrade[studentIndex].attance[attanceIndex],
       };
-      updatedItem.DVM = value;
+      updatedItem.dvm = value;
       updatedStudentGrade[studentIndex].attance[attanceIndex] = updatedItem;
       return updatedStudentGrade;
     });
@@ -82,6 +85,8 @@ const GroupAttance = () => {
 
   const handleSaveChanges = () => {
     mutateStudentsAttance(studentAttance);
+    console.log(studentAttance);
+    
     setIsEdit(true);
   };
 
@@ -115,7 +120,7 @@ const GroupAttance = () => {
     );
   }
 
-  return studentsAttanceData.data ? (
+  return studentsAttanceData?.data ? (
     <div className="studentsAttanceDataBG">
       <div className="studentsAttanceDataBox">
         <h1>Davamiyyət Cədvəli</h1>
@@ -134,19 +139,19 @@ const GroupAttance = () => {
           <Tbody>
             {studentsAttanceData.data.map(
               (
-                { id, name, surname, attance }: IGroupStudentAttance,
+                { studentId, firstName, surName, attance }: IGroupStudentAttance,
                 studentIdx: number
               ) => {
                 ordinalNum++;
                 return (
-                  <Tr key={id}>
+                  <Tr key={studentId}>
                     <Td>{ordinalNum}</Td>
-                    <Td>{name + " " + surname}</Td>
+                    <Td>{firstName + " " + surName}</Td>
                     <Td className="selectBoxTD">
-                      {attance.map(({ DVM }: any, dvmIdx: number) => (
+                      {attance.map(({ dvm }: IStudentAttanceForTeacher, dvmIdx: number) => (
                         <select
                           key={dvmIdx}
-                          defaultValue={DVM === "+" ? "+" : "-"}
+                          defaultValue={dvm === "+" ? "+" : "-"}
                           className="selectBox"
                           name="DVM"
                           onChange={(e) =>
@@ -154,9 +159,9 @@ const GroupAttance = () => {
                           }
                           disabled={isEdit}
                         >
+                          
                           <option value="-">q</option>
                           <option
-                            // selected={attance.DVM === "+" && true}
                             value="+"
                           >
                             +

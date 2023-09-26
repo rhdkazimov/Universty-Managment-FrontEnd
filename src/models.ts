@@ -124,12 +124,12 @@ export interface IGroupStudents {
 }
 
 export interface IGroupStudentAttance {
-  id: string;
-  name: string;
-  surname: string;
+  studentId: number;
+  firstName: string;
+  surName: string;
   attance: IStudentAttanceForTeacher[];
 }
 
 export interface IStudentAttanceForTeacher {
-  DVM: string;
+  dvm: string;
 }

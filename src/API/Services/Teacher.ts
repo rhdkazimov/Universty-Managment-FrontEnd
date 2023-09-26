@@ -18,12 +18,12 @@ export class TeacherService extends HttpClient {
     return await this.put(`api/grade/lesson/${id}`, body);
   }
 
-  async getGroupStudentAttance(id: string) {
-    return await this.get(`group/attance/${id}`);
+  async getGroupStudentAttance(id: number,lessonId:number) {
+    return await this.get(`api/attance/group/${id}/${lessonId}`);
   }
 
-  async saveStudentsAttance(id: string, body: IGroupStudentAttance[]) {
-    return await this.post(`group/save/attance/${id}`, body);
+  async saveStudentsAttance(id: number,lessonId:number, body: IGroupStudentAttance[]) {
+    return await this.put(`api/attance/group/${id}/${lessonId}`, body);
   }
 
 }
