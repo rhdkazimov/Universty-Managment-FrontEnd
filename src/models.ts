@@ -45,7 +45,7 @@ export interface IAnnounceInfo {
 }
 
 export interface IPrograms {
-  id:number;
+  id: number;
   name: string;
   code: string;
   lessons: ISectionProgramsFor[];
@@ -57,10 +57,28 @@ export interface ISectionProgramsFor {
 }
 
 export interface IStudentGrades {
-  years: string;
-  semester: number;
-  grades: IStudentGradesInfo[];
+  id: number;
+  sdF1: number;
+  sdF2: number;
+  sdF3: number;
+  tsi: number;
+  ssi: number;
+  ort: number;
+  student: IStudentInfoInStudentGrades;
+  lesson:ILessonInfoInStudentGrades
 }
+
+export interface IStudentInfoInStudentGrades{
+  id:number;
+  firstName:string;
+  surName:string;
+}
+
+export interface ILessonInfoInStudentGrades{
+  id:number;
+  name:string
+}
+
 
 export interface IStudentGradesInfo {
   lessonCode: string;
@@ -76,10 +94,11 @@ export interface IStudentGradesInfo {
 export interface IContactForm {
   header: string;
   text: string;
+  contact:string
 }
 
 export interface IStudentAttanceData {
-  code: string;
+  id: number;
   name: string;
   teacher: string;
   time: number;
@@ -94,13 +113,13 @@ export interface ITeacherGroups {
   lesson: ITeacherGroupsLesson;
 }
 
-export interface ITeacherGroupsLesson{
-  id:number;
+export interface ITeacherGroupsLesson {
+  id: number;
   name: string;
 }
 
 export interface ITeacherGroupsGroup {
-  id:number;
+  id: number;
   groupCode: string;
   studentsCount: number;
 }
@@ -112,7 +131,7 @@ export interface IGroupInfo {
 }
 
 export interface IGroupStudents {
-  id:number;
+  id: number;
   firstName: string;
   surName: string;
   sdF1: number;

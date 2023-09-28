@@ -37,7 +37,8 @@ const StudentsGradesNote = () => {
       return teacherService
         .getGroupStudents(location.state.groupId)
         .catch((err) => {
-          alert("Not Responding . . .");
+          // alert("Not Responding . . .");
+          console.log(err);
         });
     },
     {

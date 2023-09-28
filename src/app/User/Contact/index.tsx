@@ -13,6 +13,7 @@ import { ROUTES } from "../../../routes/consts";
 const initialValue = {
   header: "",
   text: "",
+  contact:""
 };
 
 const Contact: React.FC = () => {
@@ -90,6 +91,20 @@ const Contact: React.FC = () => {
                 <input
                   className="input"
                   name="header"
+                  onChange={(e) => handleInputValue(e)}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>Əlaqə:</b>
+              </td>
+              <td>
+                <input
+                placeholder="Nömrə və ya Mail Ünvanı"
+                  className="input"
+                  type="mail"
+                  name="contact"
                   onChange={(e) => handleInputValue(e)}
                 />
               </td>

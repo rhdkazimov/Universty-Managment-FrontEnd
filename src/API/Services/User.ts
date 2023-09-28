@@ -9,7 +9,6 @@ export class UserService extends HttpClient {
   }
 
   async getAllAnnounce() {
-    // return await this.get(`AllAnnounces`);
     return await this.get(`api/Announce/all`);
   }
 

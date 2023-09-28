@@ -28,7 +28,7 @@ const Attance: React.FC = () => {
     if (localStudent) {
       const student = JSON.parse(localStudent);
       return studentService
-        .getStudentAttance(student.id, semester)
+        .getStudentAttance(student.id)
         .catch((err) => console.log(err));
     }
   });
@@ -46,7 +46,7 @@ const Attance: React.FC = () => {
   return studentAttanceData.data ? (
     <div className="studentAttanceDataBox">
       <h1 className="boxHeader">Elektron Jurnal</h1>
-      <div className="selectContainer">
+      {/* <div className="selectContainer">
         <span className="selectInfo">Smestr:</span>
         <Select
           className="selectBox"
@@ -66,7 +66,7 @@ const Attance: React.FC = () => {
           <option value="7">7.semestr</option>
         </Select>
         <Button onClick={handleChangeSemester}>Göstər</Button>
-      </div>
+      </div> */}
       <Table className="tableBox">
         <Thead>
           <Tr>
@@ -82,9 +82,9 @@ const Attance: React.FC = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {studentAttanceData.data.lessons.map(
+          {studentAttanceData.data.map(
             ({
-              code,
+              id,
               name,
               teacher,
               time,
@@ -95,12 +95,13 @@ const Attance: React.FC = () => {
               orderNum++;
               return (
                 <Tr
+                key={id}
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
                   }}
                 >
                   <Td>{orderNum}</Td>
-                  <Td>{code}</Td>
+                  <Td>{id}</Td>
                   <Td>{name}</Td>
                   <Td>{teacher}</Td>
                   <Td>{time}</Td>
@@ -110,7 +111,7 @@ const Attance: React.FC = () => {
                   <Td>
                     <div className="progressBox">
                       <div
-                        style={{ width: percentage }}
+                        style={{ width: percentage+"%" }}
                         className="progressBar"
                       ></div>
                     </div>

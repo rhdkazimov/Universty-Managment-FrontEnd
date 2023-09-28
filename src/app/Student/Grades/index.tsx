@@ -35,11 +35,8 @@ const Grades: React.FC = () => {
       {
         //TABLE DESIGN PROBLEM
         studentGradeData?.data.length ? (
-          studentGradeData.data.map(({years,semester,grades}: IStudentGrades) => {
-            return (
               <div className="gradeDataBox">
                 <h1 className="gradeDataDate">
-                  {years} {semester}.semestr
                 </h1>
                 <Table className="gradeDataTable">
                   <Thead>
@@ -55,30 +52,30 @@ const Grades: React.FC = () => {
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {grades.map(({lessonCode,lessonName,SDF1,SDF2,SDF3,TSI,SSI,ORT}: IStudentGradesInfo) => {
+                    {studentGradeData?.data.map(({id,sdF1,sdF2,sdF3,ssi,tsi,ort,lesson:{id:lessonId,name}}: IStudentGrades) => {
                       return (
                         <Tr
+                        key={id}
                           sx={{
                             "&:last-child td, &:last-child th": { border: 0 },
                           }}
                         >
-                          <Td>{lessonCode}</Td>
-                          <Td>{lessonName}</Td>
-                          <Td>{SDF1}</Td>
-                          <Td>{SDF2}</Td>
-                          <Td>{SDF3}</Td>
-                          <Td>{TSI}</Td>
-                          <Td>{SSI}</Td>
-                          <Td>{ORT}</Td>
+                          <Td>{lessonId}</Td>
+                          <Td>{name}</Td>
+                          <Td>{sdF1}</Td>
+                          <Td>{sdF2}</Td>
+                          <Td>{sdF3}</Td>
+                          <Td>{tsi}</Td>
+                          <Td>{ssi}</Td>
+                          <Td>{ort}</Td>
                         </Tr>
                       );
                     })}
                   </Tbody>
                 </Table>
               </div>
-            );
-          })
-        ) : (
+            )
+      : (
           <div className="loaderBox">
           <FadeLoader color="#36d7b7" />
         </div>

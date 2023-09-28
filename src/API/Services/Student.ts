@@ -3,22 +3,19 @@ import { HttpClient } from "../HTTPClients";
 
 export class StudentService extends HttpClient {
   constructor() {
-    super("http://localhost:3001");
+    // super("http://localhost:3001");
+    super("https://localhost:7046");
   }
 
-  async getStudentGrades(id: string) {
-    return await this.get(`grades/${id}`);
+  async getStudentGrades(id: number) {
+    return await this.get(`api/grade/${id}`);
   }
 
-  async getStudentAttance(id: string, semester: string) {
-    return await this.get(`attance/${id}/${semester}`);
+  async getStudentAttance(id: number) {
+    return await this.get(`api/attance/${id}`);
   }
 
   async postContactForm(body: IContactForm) {
-    const localStudent = localStorage.getItem("user");
-    if (localStudent) {
-      const student = JSON.parse(localStudent);
-      return await this.post(`contact/support/${student.id}`, body);
-    }
+      return await this.post(`api/contactform`, body);
   }
 }
