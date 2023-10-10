@@ -13,7 +13,7 @@ import { ROUTES } from "../../../routes/consts";
 const initialValue = {
   header: "",
   text: "",
-  contact:""
+  contact: "",
 };
 
 const Contact: React.FC = () => {
@@ -21,8 +21,8 @@ const Contact: React.FC = () => {
   const navigate = useNavigate();
   const [contactFormValues, setContactFormValues] =
     React.useState(initialValue);
-  const { mutateAsync: mutateContactForm, isLoading: isLoginLoading } =
-    useMutation((requestBody: IContactForm) => {
+  const { mutateAsync: mutateContactForm } = useMutation(
+    (requestBody: IContactForm) => {
       return studentService
         .postContactForm(requestBody)
         .then(() => {
@@ -42,7 +42,8 @@ const Contact: React.FC = () => {
             text: "Daha sonra yenidən cəhd edin",
           });
         });
-    });
+    }
+  );
   const { data: universtySettingData }: any | undefined = useQuery(
     [EQueryKeys.getUniverstySettingData],
     () => {
@@ -83,59 +84,63 @@ const Contact: React.FC = () => {
         <h1 className="contactHeader">Əlaqə</h1>
         <form className="contactSupportForm">
           <table>
-            <tr>
-              <td>
-                <b>Başlıq:</b>
-              </td>
-              <td>
-                <input
-                  className="input"
-                  name="header"
-                  onChange={(e) => handleInputValue(e)}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>Əlaqə:</b>
-              </td>
-              <td>
-                <input
-                placeholder="Nömrə və ya Mail Ünvanı"
-                  className="input"
-                  type="mail"
-                  name="contact"
-                  onChange={(e) => handleInputValue(e)}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="textAreaHeader">
-                <b>Mətn:</b>
-              </td>
-              <td>
-                <textarea
-                  rows={8}
-                  className="input textInput"
-                  name="text"
-                  onChange={(e) => handleInputValue(e)}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td className="btnBox">
-                <Button onClick={handleSumbitForm}>Göndər</Button>
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>
+                  <b>Başlıq:</b>
+                </td>
+                <td>
+                  <input
+                    className="input"
+                    name="header"
+                    onChange={(e) => handleInputValue(e)}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <b>Əlaqə:</b>
+                </td>
+                <td>
+                  <input
+                    placeholder="Nömrə və ya Mail Ünvanı"
+                    className="input"
+                    type="mail"
+                    name="contact"
+                    onChange={(e) => handleInputValue(e)}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td className="textAreaHeader">
+                  <b>Mətn:</b>
+                </td>
+                <td>
+                  <textarea
+                    rows={8}
+                    className="input textInput"
+                    name="text"
+                    onChange={(e) => handleInputValue(e)}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td className="btnBox">
+                  <Button onClick={handleSumbitForm}>Göndər</Button>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </form>
         <div className="contactInformationBox">
-          {
-            universtySettingData?.data.map(({id,key,value}:any)=>{
-             return <span key={id}>{key}: {value}</span>
-            })
-          }
+          {universtySettingData?.data.map(({ id, key, value }: any) => {
+            return (
+              <span key={id}>
+                {key}: {value}
+              </span>
+            );
+          })}
         </div>
       </div>
     </div>

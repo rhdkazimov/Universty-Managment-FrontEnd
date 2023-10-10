@@ -1,4 +1,4 @@
-import { IGroupInfo, IGroupStudentAttance, IGroupStudents } from "../../models";
+import { IGroupStudentAttance, IGroupStudents } from "../../models";
 import { HttpClient } from "../HTTPClients";
 
 export class TeacherService extends HttpClient {
@@ -10,20 +10,23 @@ export class TeacherService extends HttpClient {
   async getTeachersGroup(id: string) {
     return await this.get(`api/teacher/groups/${id}`);
   }
-  async getGroupStudents(id: string) {
-    return await this.get(`api/teacher/group/students/${id}`);
+  async getGroupStudents(id: string, lessonId: string) {
+    return await this.get(`api/teacher/group/students/${id}/${lessonId}`);
   }
 
   async saveStudentsGrade(id: string, body: IGroupStudents[]) {
     return await this.put(`api/grade/lesson/${id}`, body);
   }
 
-  async getGroupStudentAttance(id: number,lessonId:number) {
+  async getGroupStudentAttance(id: number, lessonId: number) {
     return await this.get(`api/attance/group/${id}/${lessonId}`);
   }
 
-  async saveStudentsAttance(id: number,lessonId:number, body: IGroupStudentAttance[]) {
+  async saveStudentsAttance(
+    id: number,
+    lessonId: number,
+    body: IGroupStudentAttance[]
+  ) {
     return await this.put(`api/attance/group/${id}/${lessonId}`, body);
   }
-
 }

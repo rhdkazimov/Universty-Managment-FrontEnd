@@ -28,17 +28,22 @@ export default function ProgramsList() {
     }
   );
 
-  const handleNavigatePrograms = (e:number,code:string) => navigate(ROUTES.USER.FACULTY_PROGRAMS_PAGE,{state:{
-    id:e,
-    faculty:code
-  }})
+  const handleNavigatePrograms = (e: number, code: string) =>
+    navigate(ROUTES.USER.FACULTY_PROGRAMS_PAGE, {
+      state: {
+        id: e,
+        faculty: code,
+      },
+    });
   let ordinalNum = 0;
-
 
   return (
     <TableContainer className="facultyListContainer">
       <h1 className="facultyListHeader">Bölmələr (kafedraların) siyahısı</h1>
-      <span className="facultyListInfo">Burada sistemdə tutulan kafedraları, kafedralara məxsus dərs kodu prefikslərini və kafedraların illərə görə proqramını görə bilərsiz.</span>
+      <span className="facultyListInfo">
+        Burada sistemdə tutulan kafedraları, kafedralara məxsus dərs kodu
+        prefikslərini və kafedraların illərə görə proqramını görə bilərsiz.
+      </span>
       <Table>
         <Thead>
           <Tr>
@@ -50,24 +55,37 @@ export default function ProgramsList() {
         </Thead>
         <Tbody>
           {userProgramsData?.data.length ? (
-            userProgramsData.data.map(({id,lessons,name,code}: IPrograms) => {
-              ordinalNum++;
-              return (
-                <Tr key={id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                  <Td>{ordinalNum}</Td>
-                  <Td className="sectionCode" onClick={()=>handleNavigatePrograms(id,code)}>{"DEPS_"+code}
-                  </Td>
-                  <Td>{name}</Td>
-                  <Td>
-                    {lessons.map(({id,name}:ISectionProgramsFor) => (
-                      <span key={id}>{code+"_"+name.substring(0,2).toUpperCase()}, </span>
-                    ))}
-                  </Td>
-                </Tr>
-              );
-            })
+            userProgramsData.data.map(
+              ({ id, lessons, name, code }: IPrograms) => {
+                ordinalNum++;
+                return (
+                  <Tr
+                    key={id}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <Td>{ordinalNum}</Td>
+                    <Td
+                      className="sectionCode"
+                      onClick={() => handleNavigatePrograms(id, code)}
+                    >
+                      {"DEPS_" + code}
+                    </Td>
+                    <Td>{name}</Td>
+                    <Td>
+                      {lessons.map(({ id, name }: ISectionProgramsFor) => (
+                        <span key={id}>
+                          {code + "_" + name.substring(0, 2).toUpperCase()},{" "}
+                        </span>
+                      ))}
+                    </Td>
+                  </Tr>
+                );
+              }
+            )
           ) : (
-            <h1>DATA YOXDUR</h1>
+            <Tr>
+              <Td>DATA YOXDUR</Td>
+            </Tr>
           )}
         </Tbody>
       </Table>

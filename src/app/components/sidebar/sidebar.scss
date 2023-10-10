@@ -4,6 +4,7 @@
   align-items: center;
   flex-direction: column;
   background-color: #333;
+  min-height: 90vh;
   .userInfo {
     display: flex;
     margin-top: 5%;
@@ -31,7 +32,7 @@
         display: flex;
         list-style: none;
         padding: 10px 0 10px 15px;
-        &:hover{
+        &:hover {
           background-color: #242424;
         }
         .icon {

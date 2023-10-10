@@ -22,28 +22,30 @@ const GroupAttance = () => {
     IGroupStudentAttance[]
   >([]);
   const [isEdit, setIsEdit] = React.useState(true);
-  const { data: studentsAttanceData, isLoading }: any | undefined = useQuery(
+  const { isLoading }: any | undefined = useQuery(
     [EQueryKeys.getGroupStudentAttance],
     () => {
       return teacherService
-        .getGroupStudentAttance(location.state.groupId,location.state.lessonId)
+        .getGroupStudentAttance(location.state.groupId, location.state.lessonId)
+        .then(({ data }) => setStudentAttance(data))
         .catch((err) => {
-          // alert("Site not responding... Try after again");
-          console.log(err);
+          Swal.fire({
+            icon: "error",
+            title: "Xəta baş verdi",
+            text: "Daha sonra yenidən cəhd edin",
+          });
         });
-    },
-    {
-      onSuccess: () => {setStudentAttance(studentsAttanceData?.data)
-      console.log(studentsAttanceData);
-      console.log(studentsAttanceData?.data);
-      },
     }
   );
 
   const { mutateAsync: mutateStudentsAttance, isLoading: isSaveLoading } =
     useMutation((requestBody: IGroupStudentAttance[]) => {
       return teacherService
-        .saveStudentsAttance(location.state.groupId,location.state.lessonId, requestBody)
+        .saveStudentsAttance(
+          location.state.groupId,
+          location.state.lessonId,
+          requestBody
+        )
         .then(() => {
           Swal.fire({
             position: "center",
@@ -55,7 +57,6 @@ const GroupAttance = () => {
           setIsEdit(true);
         })
         .catch((err) => {
-          console.log(err);
           Swal.fire({
             icon: "error",
             title: "Xəta baş verdi",
@@ -86,7 +87,7 @@ const GroupAttance = () => {
   const handleSaveChanges = () => {
     mutateStudentsAttance(studentAttance);
     console.log(studentAttance);
-    
+
     setIsEdit(true);
   };
 
@@ -120,7 +121,7 @@ const GroupAttance = () => {
     );
   }
 
-  return studentsAttanceData?.data ? (
+  return studentAttance.length > 0 ? (
     <div className="studentsAttanceDataBG">
       <div className="studentsAttanceDataBox">
         <h1>Davamiyyət Cədvəli</h1>
@@ -137,9 +138,14 @@ const GroupAttance = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {studentsAttanceData.data.map(
+            {studentAttance.map(
               (
-                { studentId, firstName, surName, attance }: IGroupStudentAttance,
+                {
+                  studentId,
+                  firstName,
+                  surName,
+                  attance,
+                }: IGroupStudentAttance,
                 studentIdx: number
               ) => {
                 ordinalNum++;
@@ -148,26 +154,26 @@ const GroupAttance = () => {
                     <Td>{ordinalNum}</Td>
                     <Td>{firstName + " " + surName}</Td>
                     <Td className="selectBoxTD">
-                      {attance.map(({ dvm }: IStudentAttanceForTeacher, dvmIdx: number) => (
-                        <select
-                          key={dvmIdx}
-                          defaultValue={dvm === "+" ? "+" : "-"}
-                          className="selectBox"
-                          name="DVM"
-                          onChange={(e) =>
-                            handleChangeInput(e, studentIdx, dvmIdx)
-                          }
-                          disabled={isEdit}
-                        >
-                          
-                          <option value="-">q</option>
-                          <option
-                            value="+"
+                      {attance.map(
+                        (
+                          { dvm }: IStudentAttanceForTeacher,
+                          dvmIdx: number
+                        ) => (
+                          <select
+                            key={dvmIdx}
+                            defaultValue={dvm === "+" ? "+" : "-"}
+                            className="selectBox"
+                            name="DVM"
+                            onChange={(e) =>
+                              handleChangeInput(e, studentIdx, dvmIdx)
+                            }
+                            disabled={isEdit}
                           >
-                            +
-                          </option>
-                        </select>
-                      ))}
+                            <option value="-">q</option>
+                            <option value="+">+</option>
+                          </select>
+                        )
+                      )}
                     </Td>
                   </Tr>
                 );

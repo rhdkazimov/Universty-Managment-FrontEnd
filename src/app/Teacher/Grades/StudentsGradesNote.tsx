@@ -1,50 +1,40 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useService } from "../../../API/Services";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { EQueryKeys } from "../../../enums";
 import { FadeLoader } from "react-spinners";
 import { Button, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
-import { IGroupStudents } from "../../../models";
+import { IGroupInfo, IGroupStudents } from "../../../models";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { ROUTES } from "../../../routes/consts";
 import Swal from "sweetalert2";
 import "./gradesnote.scss";
 
-const initialStudentGradeValue = [
-  {
-    id:0,
-    firstName: "Ad",
-    surName: "Soyad",
-    sdF1: 0,
-    sdF2: 0,
-    sdF3: 0,
-    tsi: 0,
-    ssi: 0,
-    ort: 0,
-  }
-]
-
 const StudentsGradesNote = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { teacherService } = useService();
   const [studentGrade, setStudentGrade] = React.useState<IGroupStudents[]>([]);
+  const [gradesInfo, setGradesInfo] = React.useState<IGroupInfo>();
   const [isEdit, setIsEdit] = React.useState(true);
-  const { data: studentsGradesData, isLoading,refetch:refetchGrades }: any | undefined = useQuery(
+  const { isLoading }: any | undefined = useQuery(
     [EQueryKeys.getGroupStudentsGrades],
     () => {
       return teacherService
-        .getGroupStudents(location.state.groupId)
+        .getGroupStudents(location.state.groupId, location.state.lessonId)
+        .then(({ data }) => {
+          setGradesInfo(data);
+          setStudentGrade(data?.students);
+        })
         .catch((err) => {
-          // alert("Not Responding . . .");
-          console.log(err);
+          Swal.fire({
+            icon: "error",
+            title: "Xəta baş verdi",
+            text: "Daha sonra yenidən cəhd edin",
+          });
         });
-    },
-    {
-      onSuccess: () => {
-        setStudentGrade(studentsGradesData?.data?.students);
-      },
     }
   );
   const { mutateAsync: mutateStudentsGrades, isLoading: isSaveLoading } =
@@ -59,8 +49,8 @@ const StudentsGradesNote = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          queryClient.invalidateQueries([EQueryKeys.getGroupStudentsGrades]);
           setIsEdit(true);
-          refetchGrades();
           navigate(ROUTES.TEACHER.TEACHER_GROUPS);
         })
         .catch(() => {
@@ -72,21 +62,26 @@ const StudentsGradesNote = () => {
         });
     });
 
-  // Set data state when changing input value problem
   const handleChangeInput = (
     { target: { name, value } }: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
-      setStudentGrade((previus) => {
-        const updatedStudentGrade = [...previus];
-        const updatedItem: IGroupStudents = {
-          ...updatedStudentGrade[index],
-        };
-        if(name === "sdF1" || name === "sdF2" || name === "sdF3" || name === "ssi" || name === "tsi")
+    setStudentGrade((previus) => {
+      const updatedStudentGrade = [...previus];
+      const updatedItem: IGroupStudents = {
+        ...updatedStudentGrade[index],
+      };
+      if (
+        name === "sdF1" ||
+        name === "sdF2" ||
+        name === "sdF3" ||
+        name === "ssi" ||
+        name === "tsi"
+      )
         updatedItem[name] = parseInt(value);
-        updatedStudentGrade[index] = updatedItem;
-        return updatedStudentGrade;
-      });
+      updatedStudentGrade[index] = updatedItem;
+      return updatedStudentGrade;
+    });
   };
 
   const handleEditGrades = () => {
@@ -128,13 +123,11 @@ const StudentsGradesNote = () => {
     );
   }
 
-//return studentGrade!==undefined? (
-  return studentsGradesData?.data? (
+  return studentGrade.length > 0 ? (
     <div className="studentsGradesDataBG">
       <div className="studentsGradesDataBox">
         <h1>
-          {studentsGradesData.data.groupCode} -
-          {studentsGradesData.data.lessonName}
+          Qrup/Dərs : {gradesInfo?.groupCode} - {location.state.name}{" "}
         </h1>
         <div className="returnBox" onClick={handleReturnTeacherGroups}>
           <ChevronLeftIcon />
@@ -154,7 +147,7 @@ const StudentsGradesNote = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {studentsGradesData.data.students.map(
+            {studentGrade.map(
               (
                 {
                   id,

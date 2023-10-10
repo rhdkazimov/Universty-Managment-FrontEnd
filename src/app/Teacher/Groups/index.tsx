@@ -24,12 +24,20 @@ const TeacherGroups: React.FC = () => {
     }
   );
 
-  const handleNavigateStudentsGrades = (e: number,lessonId:number) => {
-    navigate(ROUTES.TEACHER.CHECK_STUDENTS_GRADES, { state: {groupId:e,lessonId:lessonId} });
+  const handleNavigateStudentsGrades = (
+    e: number,
+    lessonId: number,
+    name: string
+  ) => {
+    navigate(ROUTES.TEACHER.CHECK_STUDENTS_GRADES, {
+      state: { groupId: e, lessonId: lessonId, name },
+    });
   };
 
-  const handleNavigateStudentsAttance = (e: number,lessonId:number) => {
-    navigate(ROUTES.TEACHER.CHECK_ATTANCE, { state: {groupId:e,lessonId:lessonId} });
+  const handleNavigateStudentsAttance = (e: number, lessonId: number) => {
+    navigate(ROUTES.TEACHER.CHECK_ATTANCE, {
+      state: { groupId: e, lessonId: lessonId },
+    });
   };
 
   if (isLoading) {
@@ -55,19 +63,29 @@ const TeacherGroups: React.FC = () => {
           </Thead>
           <Tbody>
             {teacherGroupsData.data.map(
-              ({ group:{id:groupId,groupCode,studentsCount}, id, lesson:{id:lessonId,name} }: ITeacherGroups) => {
+              ({
+                group: { id: groupId, groupCode, studentsCount },
+                id,
+                lesson: { id: lessonId, name },
+              }: ITeacherGroups) => {
                 return (
                   <Tr key={id}>
                     <Td>{groupCode}</Td>
                     <Td>{name}</Td>
                     <Td>{studentsCount}</Td>
-                    <Td onClick={() => handleNavigateStudentsGrades(groupId,lessonId)}>
+                    <Td
+                      onClick={() =>
+                        handleNavigateStudentsGrades(groupId, lessonId, name)
+                      }
+                    >
                       <Button className="moreInformation">
                         Qiymətləndirmə
                       </Button>
                     </Td>
                     <Td
-                      onClick={() => handleNavigateStudentsAttance(groupId,lessonId)}
+                      onClick={() =>
+                        handleNavigateStudentsAttance(groupId, lessonId)
+                      }
                     >
                       <Button className="moreInformation">Davamiyyət</Button>
                     </Td>
