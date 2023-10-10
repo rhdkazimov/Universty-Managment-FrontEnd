@@ -21,12 +21,16 @@ const initialLoginErrorValue = {
   password: false,
 };
 
-export const Login:React.FC = () => {
-  const { mutateLoginUserApplication, isLoginLoading,setUserData } = useUserAuthicantion();
-  const [error,setError] = React.useState(false);
+export const Login: React.FC = () => {
+  const { mutateLoginUserApplication, isLoginLoading, setUserData } =
+    useUserAuthicantion();
+  const [error, setError] = React.useState(false);
   const navigate = useNavigate();
-  const [loginInputValue, setLoginInputValue] = React.useState(initialLoginValue);
-  const [loginInputError, setLoginInputError] = React.useState(initialLoginErrorValue);
+  const [loginInputValue, setLoginInputValue] =
+    React.useState(initialLoginValue);
+  const [loginInputError, setLoginInputError] = React.useState(
+    initialLoginErrorValue
+  );
   const handleLoginInputChanges = React.useCallback(
     ({ target: { name, value } }: React.ChangeEvent<HTMLInputElement>) => {
       setLoginInputValue((previus) => ({ ...previus, [name]: value }));
@@ -40,11 +44,14 @@ export const Login:React.FC = () => {
       loginInputValue.id !== 0
     ) {
       setLoginInputError({ id: false, password: false });
-      mutateLoginUserApplication(loginInputValue).then(()=>{navigate(ROUTES.STUDENT.MAIN_PAGE)
-      }).catch((err) => {
-        console.log(err);
-        setError(true);
-      });
+      mutateLoginUserApplication(loginInputValue)
+        .then(() => {
+          navigate(ROUTES.STUDENT.MAIN_PAGE);
+        })
+        .catch((err) => {
+          console.log(err);
+          setError(true);
+        });
     }
     if (loginInputValue.password === "" && loginInputValue.id === 0) {
       setLoginInputError({ id: true, password: true });
@@ -57,32 +64,41 @@ export const Login:React.FC = () => {
 
   return (
     <div className="login-form-div">
-    <Formik initialValues={initialLoginValue} onSubmit={handleSumbitLoginForm}>
-      <Form className="login-form">
-       {error && <b className="error">Tələbə nömrəsi və ya şifrə səhvdir</b> }
-        <FormControl isInvalid={loginInputError.id}>
-          <FormLabel>Tələbə Nömrəsi</FormLabel>
-          <Input
-            onChange={handleLoginInputChanges}
-            name="id"
-            placeholder="Telebe İD qeyd edin"
-          />
-          <FormErrorMessage>Tələbə İD daxil edin</FormErrorMessage>
-        </FormControl>
-        <FormControl isInvalid={loginInputError.password}>
-          <FormLabel>Şifrə</FormLabel>
-          <Input
-            onChange={handleLoginInputChanges}
-            name="password"
-            placeholder="Şifrənizi daxil edin"
-          />
-          <FormErrorMessage>Şifrənizi daxil edin</FormErrorMessage>
-        </FormControl>
-        <Button mt={4} colorScheme="teal" className="loginFormSumbitBtn" type="submit">
-          Submit
-        </Button>
-      </Form>
-    </Formik>
+      <Formik
+        initialValues={initialLoginValue}
+        onSubmit={handleSumbitLoginForm}
+      >
+        <Form className="login-form">
+          {error && <b className="error">Tələbə nömrəsi və ya şifrə səhvdir</b>}
+          <FormControl isInvalid={loginInputError.id}>
+            <FormLabel>Tələbə Nömrəsi</FormLabel>
+            <Input
+              onChange={handleLoginInputChanges}
+              name="id"
+              placeholder="Telebe İD qeyd edin"
+            />
+            <FormErrorMessage>Tələbə İD daxil edin</FormErrorMessage>
+          </FormControl>
+          <FormControl isInvalid={loginInputError.password}>
+            <FormLabel>Şifrə</FormLabel>
+            <Input
+              onChange={handleLoginInputChanges}
+              name="password"
+              type="password"
+              placeholder="Şifrənizi daxil edin"
+            />
+            <FormErrorMessage>Şifrənizi daxil edin</FormErrorMessage>
+          </FormControl>
+          <Button
+            mt={4}
+            colorScheme="teal"
+            className="loginFormSumbitBtn"
+            type="submit"
+          >
+            Submit
+          </Button>
+        </Form>
+      </Formik>
     </div>
   );
 };
