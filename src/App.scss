@@ -1,37 +1,45 @@
 .error {
-    color: red;
+  color: red;
 }
 
-.login-form-div{
-    background-image: url("https://images.theconversation.com/files/45159/original/rptgtpxd-1396254731.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1356&h=668&fit=crop");
-    background-size: cover;
-    height: 100% !important;
-min-height: 800px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .login-form{
-        width: 30%;
-        background-color: white;
-        padding: 35px;
-        border-radius: 10px;
-        .loginFormSumbitBtn{
-            width: 100%;
-        }
+.login-form-div {
+  background-image: url("https://images.theconversation.com/files/45159/original/rptgtpxd-1396254731.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1356&h=668&fit=crop");
+  background-repeat: no-repeat;
+  background-size: cover !important;
+  height: 100% !important;
+  min-height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    background-size: contain;
+  }
+
+  .login-form {
+    width: 30%;
+    background-color: white;
+    padding: 35px;
+    border-radius: 10px;
+
+    @media (max-width: 768px) {
+      width: 90%;
     }
+    .loginFormSumbitBtn {
+      width: 100%;
+    }
+  }
 }
-
 
 .flex {
-    display: flex;
+  display: flex;
 }
 
-
-.loaderBox{
-    width: 100%;
-    display: flex;
-    min-height: 400px;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
+.loaderBox {
+  width: 100%;
+  display: flex;
+  min-height: 400px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 }

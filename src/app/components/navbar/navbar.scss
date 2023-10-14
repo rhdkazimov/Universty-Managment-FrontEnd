@@ -20,9 +20,11 @@
           color: white;
           font-size: 22px;
           font-weight: 500;
+
+          @media (max-width: 768px) {
+            font-size: 19px;
+          }
         }
-        
-      
       }
 
       .menuicon {
@@ -41,6 +43,9 @@
       display: flex;
       align-items: center;
       width: 15%;
+      @media (max-width: 768px) {
+        width: 30% !important;
+      }
       .setting {
         color: white;
         font-size: 45px;
@@ -76,10 +81,16 @@
         img {
           padding-right: 5px;
           width: 25%;
+          @media (max-width: 768px) {
+            width: 100% !important;
+          }
         }
         p {
           color: white;
           margin-right: 20px;
+          @media (max-width: 768px) {
+            display: none !important;
+          }
         }
       }
 
@@ -99,11 +110,11 @@
         top: 8%;
         margin-right: 3%;
         .user-header {
-            height: 160px;
-            padding: 10px;
-            text-align: center;
-            background-color: #3c8dbc;
-            list-style: none;
+          height: 160px;
+          padding: 10px;
+          text-align: center;
+          background-color: #3c8dbc;
+          list-style: none;
           img {
             margin: auto !important;
             z-index: 5;
@@ -126,16 +137,26 @@
           }
         }
 
-        .user-footer{
-            display: flex;
-            flex-direction: row-reverse;
-            padding: 10px;
-            background-color: #fff;
+        .user-footer {
+          display: flex;
+          flex-direction: row-reverse;
+          padding: 10px;
+          background-color: #fff;
+          z-index: 1;
+          .userLeftBtn {
+            color: red;
             z-index: 1;
-            .userLeftBtn{
-                color: red;
-                z-index: 1;
-            }
+          }
+        }
+
+        @media (max-width: 768px) {
+          width: 100%;
+
+          .userInfoSettingNav {
+            width: 100%;
+            right: auto;
+            left: 0;
+          }
         }
       }
     }

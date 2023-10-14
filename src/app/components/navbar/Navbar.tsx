@@ -50,7 +50,6 @@ const Navbar = () => {
             <img src={userInfo?.img} alt="profile" />
             <p>{userInfo?.firstName + " " + userInfo?.surName}</p>
           </div>
-          <SettingsSuggestIcon className="setting" />
           <ul
             className={
               showUserSetting

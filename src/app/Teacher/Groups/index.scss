@@ -12,16 +12,27 @@
       margin-bottom: 15px;
     }
     table {
-        padding: 15px;
+      padding: 15px;
       td {
         align-items: center;
         flex-direction: column;
       }
     }
     .moreInformation {
-        height: min-content;
-        background-color: rgb(0, 174, 255);
-        color: #ffff;
+      height: min-content;
+      background-color: rgb(0, 174, 255);
+      color: #ffff;
+    }
+  }
+  @media (max-width: 768px) {
+    .teacherGroupsDataBoxBG {
+      padding: 10px;
+    }
+
+    .teacherGroupsDataBox {
+      .boxHeader {
+        font-size: 18px;
+      }
     }
   }
 }

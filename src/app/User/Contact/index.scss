@@ -40,4 +40,21 @@
       }
     }
   }
+
+  @media (max-width: 768px) {
+    .contactBoxBG {
+      padding: 10px;
+    }
+
+    .contactBox {
+      .contactSupportForm {
+        tr {
+          input,
+          .textInput {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
 }

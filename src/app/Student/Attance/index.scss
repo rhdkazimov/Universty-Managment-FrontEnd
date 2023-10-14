@@ -48,3 +48,29 @@
     }
   }
 }
+@media (max-width: 768px) {
+  .studentAttanceDataBox {
+    overflow-y: hidden !important;
+    overflow-x: auto !important;
+    width: 100% !important;
+    padding: 10px;
+    margin-top: 10px;
+    .boxHeader {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    .selectContainer {
+      margin-bottom: 10px; 
+      .selectInfo {
+        font-weight: 600;
+      }
+      .selectBox {
+        width: 50%; 
+      }
+      button {
+        margin-left: 5px; 
+        height: 30px; 
+      }
+    }
+  }
+}
