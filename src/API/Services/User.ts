@@ -4,8 +4,8 @@ import { HttpClient } from "../HTTPClients";
 export class UserService extends HttpClient {
   constructor() {
     // super("http://localhost:3001");
-        super("https://localhost:7046");
-
+    // super("https://localhost:7046");
+    super("http://kazimov11-001-site1.itempurl.com");
   }
 
   async getAllAnnounce() {
@@ -21,7 +21,7 @@ export class UserService extends HttpClient {
   }
 
   async logout() {
-    return await this.get("/logout").then(() => {
+    return await this.get("api/user/logout").then(() => {
       localStorage.clear();
     });
   }

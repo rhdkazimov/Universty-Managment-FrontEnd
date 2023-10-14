@@ -4,7 +4,8 @@ import { HttpClient } from "../HTTPClients";
 export class UserAuthService extends HttpClient {
   constructor() {
     // super("http://localhost:3001");
-    super("https://localhost:7046");
+    // super("https://localhost:7046");
+    super("http://kazimov11-001-site1.itempurl.com");
   }
 
   // async registerUser(body:IUserInfo){
