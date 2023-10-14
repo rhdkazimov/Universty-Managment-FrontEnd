@@ -10,6 +10,7 @@ import React from "react";
 import { useUserAuthicantion } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes/consts";
+import Swal from "sweetalert2";
 
 const initialLoginValue = {
   id: 0,
@@ -49,8 +50,12 @@ export const Login: React.FC = () => {
           navigate(ROUTES.STUDENT.MAIN_PAGE);
         })
         .catch((err) => {
-          console.log(err);
           setError(true);
+          Swal.fire({
+            icon: "error",
+            title: "Xəta baş verdi",
+            text: "Daha sonra yenidən cəhd edin",
+          });
         });
     }
     if (loginInputValue.password === "" && loginInputValue.id === 0) {
